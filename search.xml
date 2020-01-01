@@ -1,22 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>&#39;my-first-blog&#39;</title>
+    <title>my-first-blog</title>
     <url>/2020/01/01/my-first-blog/</url>
-    <content><![CDATA[<p>Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.</p>
-<p>Quick Start</p>
-<p>Create a new post</p>
-<pre><code>$ hexo new &quot;My New Post&quot;</code></pre><p>More info: Writing</p>
-<p>Run server</p>
-<pre><code>$ hexo server</code></pre><p>More info: Server</p>
-<p>Generate static files</p>
-<pre><code>$ hexo generate</code></pre><p>More info: Generating</p>
-<p>Deploy to remote sites</p>
-<pre><code>$ hexo deploy</code></pre><p>More info: Deployment</p>
-]]></content>
-      <tags>
-        <tag>test</tag>
-      </tags>
+    <content><![CDATA[<pre><code>title: typora-vue-theme主题介绍
+date: 2018-09-07 09:25:00
+author: wyatt
+top: true
+cover: true
+toc: false
+mathjax: false
+summary: 这是你自定义的文章摘要内容，如果这个属性有值，文章卡片摘要就显示这段文字，否则程序会自动截取文章的部分内容作为摘要
+categories: Markdown
+tags:
+  - Typora
+  - Markdown</code></pre>]]></content>
   </entry>
   <entry>
     <title>Hello World</title>
