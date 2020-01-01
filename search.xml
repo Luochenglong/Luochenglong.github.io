@@ -3,7 +3,20 @@
   <entry>
     <title>&#39;my-first-blog&#39;</title>
     <url>/2020/01/01/my-first-blog/</url>
-    <content><![CDATA[]]></content>
+    <content><![CDATA[<p>Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.</p>
+<p>Quick Start</p>
+<p>Create a new post</p>
+<pre><code>$ hexo new &quot;My New Post&quot;</code></pre><p>More info: Writing</p>
+<p>Run server</p>
+<pre><code>$ hexo server</code></pre><p>More info: Server</p>
+<p>Generate static files</p>
+<pre><code>$ hexo generate</code></pre><p>More info: Generating</p>
+<p>Deploy to remote sites</p>
+<pre><code>$ hexo deploy</code></pre><p>More info: Deployment</p>
+]]></content>
+      <tags>
+        <tag>test</tag>
+      </tags>
   </entry>
   <entry>
     <title>Hello World</title>
