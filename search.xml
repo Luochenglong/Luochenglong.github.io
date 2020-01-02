@@ -3,10 +3,16 @@
   <entry>
     <title>my-first-blog</title>
     <url>/2020/01/01/my-first-blog/</url>
-    <content><![CDATA[<p>title: typora-vue-theme主题介绍<br>date: 2018-09-07 09:25:00<br>author: wyatt<br>top: true<br>cover: true<br>toc: false<br>mathjax: false<br>summary: 这是你自定义的文章摘要内容，如果这个属性有值，文章卡片摘要就显示这段文字，否则程序会自动截取文章的部分内容作为摘要<br>categories: Markdown<br>tags:</p>
+    <content><![CDATA[<hr>
+<p>title: typora-vue-theme主题介绍<br>date: 2018-09-07 09:25:00<br>author: wyatt<br>top: true<br>cover: true<br>toc: false<br>mathjax: false<br>summary: 这是你自定义的文章摘要内容，如果这个属性有值，文章卡片摘要就显示这段文字，否则程序会自动截取文章的部分内容作为摘要<br>categories: Markdown<br>tags:</p>
 <ul>
-<li>Typora</li>
-<li>Markdown</li>
+<li><p>Typora</p>
+</li>
+<li><p>Markdown</p>
+<hr>
+<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=1374056689&auto=1&height=66"></iframe>
+
+</li>
 </ul>
 ]]></content>
   </entry>
