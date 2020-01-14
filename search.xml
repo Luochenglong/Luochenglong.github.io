@@ -16,7 +16,7 @@
 <li>服务自动注册地与发现，不需要写死服务提供方法地址，注册中心基于接口名查询服务提供的IP地址，并且能够平滑添加或删除服务提供者。</li>
 </ul>
 <h5 id="Dubbo产生的背景"><a href="#Dubbo产生的背景" class="headerlink" title="Dubbo产生的背景"></a>Dubbo产生的背景</h5><p>随着互联网的发展，网站应用的规模不断扩大，常规的垂直应用架构已无法应对，分布式服务架构以及流动计算架构势在必行，亟需一个治理系统确保架构有条不紊的演进。</p>
-<p><img src="https://www.biaodianfu.com/wp-content/uploads/2014/11/dubbo-architecture.png" alt="img"> </p>
+<p>![dubbo-architecture-roadmap](F:\chrome download\image\java\dubbo-architecture-roadmap.jpg)</p>
 <ul>
 <li>单一应用架构<ul>
 <li>当网站流量很小时，只需一个应用，将所有功能都部署都在一起，以减少部署节点和成本。</li>
@@ -39,7 +39,7 @@
 </ul>
 </li>
 </ul>
-<h5 id="Dubbo可以满足的需求"><a href="#Dubbo可以满足的需求" class="headerlink" title="Dubbo可以满足的需求"></a>Dubbo可以满足的需求</h5><p><img src="https://www.biaodianfu.com/wp-content/uploads/2014/11/dubbo.png" alt="img"> </p>
+<h5 id="Dubbo可以满足的需求"><a href="#Dubbo可以满足的需求" class="headerlink" title="Dubbo可以满足的需求"></a>Dubbo可以满足的需求</h5><p>![](F:\chrome download\image\java\dubbo-service-governance.jpg)</p>
 <p>在大规模服务化之前，应用可能只是通过RMI或Hessian等工具，简单的暴露和引用远程服务，通过配置服务的URL地址进行调用，通过F5等硬件进行负载均衡。</p>
 <p><strong>(1)当服务越来越多时，服务URL配置管理变得非常困难，F5硬件负载均衡器单点压力也越来越大。</strong></p>
 <p>​    此时需要一个服务注册中心，动态的注册和发现服务，是服务的位置透明。</p>
