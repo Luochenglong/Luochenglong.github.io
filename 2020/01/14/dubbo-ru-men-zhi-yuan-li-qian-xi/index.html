@@ -4,8 +4,11 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="Hello World, Wyatt">
-    <meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hex">
+    <meta name="keywords" content="Dubbo入门之原理浅析, Wyatt">
+    <meta name="description" content="
+title:Dubbo入门之原理浅析date:2020-01-14 12:40:00author:wyatttop:truecategories:Javatags:Dubbo   
+
+一、什么是dubbo  dubbo是Alibaba开源">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -13,7 +16,7 @@
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>Hello World | Wyatt</title>
+    <title>Dubbo入门之原理浅析 | Wyatt</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -281,12 +284,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/12.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/4.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">Hello World</h1>
+                    <h1 class="description center-align post-title">Dubbo入门之原理浅析</h1>
                 </div>
             </div>
         </div>
@@ -415,28 +418,28 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2019-12-30
+                    2020-01-14
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2020-01-02
+                    2020-01-14
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    73
+                    1.4k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    1 分
+                    4 分
                 </div>
                 
 				
@@ -452,15 +455,54 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><pre class=" language-bash"><code class="language-bash">$ hexo new <span class="token string">"My New Post"</span></code></pre>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><pre class=" language-bash"><code class="language-bash">$ hexo server</code></pre>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><pre class=" language-bash"><code class="language-bash">$ hexo generate</code></pre>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><pre class=" language-bash"><code class="language-bash">$ hexo deploy</code></pre>
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html" target="_blank" rel="noopener">Deployment</a></p>
+                <hr>
+<p>title:Dubbo入门之原理浅析<br>date:2020-01-14 12:40:00<br>author:wyatt<br>top:true<br>categories:Java<br>tags:Dubbo   </p>
+<hr>
+<h5 id="一、什么是dubbo"><a href="#一、什么是dubbo" class="headerlink" title="一、什么是dubbo"></a>一、什么是dubbo</h5><p>  dubbo是Alibaba开源的分布式服务框架，它最大的特点是按照分层的方式来架构，使用这种方式可以使各个层之间解耦合（或者最大限度地松耦合）。从服务模型的角度来看，Dubbo采用一种非常简单的模型，要么是服务提供方提供服务，要么是消费方消费服务，所以基于这一点可以抽象出服务提供方（Provider）和服务消费2方（Consumer）两个角色。关于注册中心、协议支持和服务监控等内容。Webservice也是一种服务框架，但是Webservice并不是分布式的服务框架，他需要结合F5实现负载均衡。因此，dubbo除了可以提供服务之外，还可以实现软负载均衡。它还提供了两个功能Monitor监控中心和调用中心。还两个是可选的，需要单独配置。</p>
+<p>Dubbo是阿里巴巴SOA治理方案的核心框架，致力于提供高性能和透明化的RPC远程服务屌用方案，以及SOA服务治理方案。其核心部分包含：</p>
+<ul>
+<li><strong>远程通讯</strong> <strong>:</strong>提供对多种基于长连接的NIO框架抽象封装，包括多种线程模型，序列化，以及“请求-响应”模式的信息交换方式。</li>
+<li><strong>集群容错:</strong>提供基于接口方法的透明远程调用么，包括多协议支持，以及软负载均衡，失败容错，地址路由，动态配置等集群支持。</li>
+<li><strong>自动发现:</strong>基于注册中心目录服务，使服务消费方能动态得查找服务提供方，是地址透明，使服务提供方可以平滑增加或减少机器。</li>
+</ul>
+<h6 id="那么，Dubbo能做什么"><a href="#那么，Dubbo能做什么" class="headerlink" title="那么，Dubbo能做什么?"></a>那么，Dubbo能做什么?</h6><ul>
+<li>透明化的远程方法调用，就想调用本地方法一样调用远程方法，只需简单配置，没有任何API侵入。</li>
+<li>软负载均衡及容错机制，可以在内网替代F5等硬件负载均衡器，降低成本，减少单点。</li>
+<li>服务自动注册地与发现，不需要写死服务提供方法地址，注册中心基于接口名查询服务提供的IP地址，并且能够平滑添加或删除服务提供者。</li>
+</ul>
+<h5 id="Dubbo产生的背景"><a href="#Dubbo产生的背景" class="headerlink" title="Dubbo产生的背景"></a>Dubbo产生的背景</h5><p>随着互联网的发展，网站应用的规模不断扩大，常规的垂直应用架构已无法应对，分布式服务架构以及流动计算架构势在必行，亟需一个治理系统确保架构有条不紊的演进。</p>
+<p><img src="https://www.biaodianfu.com/wp-content/uploads/2014/11/dubbo-architecture.png" alt="img"> </p>
+<ul>
+<li>单一应用架构<ul>
+<li>当网站流量很小时，只需一个应用，将所有功能都部署都在一起，以减少部署节点和成本。</li>
+<li>此时，用于简化增删改查工作量的<strong>数据访问框架（ORM）</strong>是关键。</li>
+</ul>
+</li>
+<li>垂直应用架构<ul>
+<li>当访问量逐渐增大，单一应用增加机器带来的加速度越小，将应用拆分成互补想干的杰哥应用，以提升效率。</li>
+<li>此时，用于加速前端页面开发的<strong>Web框架(MVC)</strong>是关键。</li>
+</ul>
+</li>
+<li>分布式服务架构<ul>
+<li>当垂直应用越来越多，应用之间交互不可避免，将核心业务抽取出来，作为独立的服务，逐渐形成稳定的服务中心，使前端应用能更快苏的响应多变的市场需求。</li>
+<li>此时，用于提供业务复用一整合的<strong>分布式服务框架(RPC)</strong>是关键</li>
+</ul>
+</li>
+<li>流动计算架构<ul>
+<li>当服务越来越多，容量的评估，小服务资源的浪费等问题逐渐显现，此时需增加一个调度中心基于访问压力实时管理集群容量，提高集群利用率。</li>
+<li>此时，用于提高机器利用率的<strong>资源调度和治理中心(SOA)</strong>是关键</li>
+</ul>
+</li>
+</ul>
+<h5 id="Dubbo可以满足的需求"><a href="#Dubbo可以满足的需求" class="headerlink" title="Dubbo可以满足的需求"></a>Dubbo可以满足的需求</h5><p><img src="https://www.biaodianfu.com/wp-content/uploads/2014/11/dubbo.png" alt="img"> </p>
+<p>在大规模服务化之前，应用可能只是通过RMI或Hessian等工具，简单的暴露和引用远程服务，通过配置服务的URL地址进行调用，通过F5等硬件进行负载均衡。</p>
+<p><strong>(1)当服务越来越多时，服务URL配置管理变得非常困难，F5硬件负载均衡器单点压力也越来越大。</strong></p>
+<p>​    此时需要一个服务注册中心，动态的注册和发现服务，是服务的位置透明。</p>
+<p>   并通过在消费方获取服务提供方地址列表，实现软负载均衡和Failover，降低对F5硬件负载均衡器的依赖，也减少部分成本。</p>
+<p><strong>(2)当进一步发展,服务间依赖关系变得错综复杂，甚至分不清哪个应用之前启动，架构师都不能完整的描述应用的架构关系。</strong></p>
+<p>这时，需要自动画出应用间的依赖关系图，一帮助架构师清理关系。</p>
+<p><strong>（3）接着，服务的调用量越来越大，服务的容量问题就暴露出来了，这个服务需要多少台机器？什么时候改加机器？</strong></p>
+<p>为了解决这些问题，第一步，要将服务现在每天的调用量，响应时间，都统计处理，作为容量规划的参考指标。其次，要可以动态调整权重，在线上，蒋某太机器的权重一直加大，并在加大的过程中记录响应时间的变化，知道响应时间到达阈值，记录此时的访问量，再以此访问量乘以机器数反推总容量。</p>
 
             </div>
             <hr/>
@@ -486,7 +528,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://www.wyatt.asia/2019/12/30/hello-world/">https://www.wyatt.asia/2019/12/30/hello-world/</a>
+                    <a href="https://www.wyatt.asia/2020/01/14/dubbo-ru-men-zhi-yuan-li-qian-xi/">https://www.wyatt.asia/2020/01/14/dubbo-ru-men-zhi-yuan-li-qian-xi/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -716,9 +758,10 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
                 <a href="/2020/01/14/dubbo-ru-men-zhi-yuan-li-qian-xi/">
                     <div class="card-image">
@@ -739,9 +782,9 @@ title:Dubbo入门之原理浅析date:2020-01-14 12:40:00author:wyatttop:truecate
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-01-14
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-01-14
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-user fa-fw"></i>
@@ -750,6 +793,7 @@ title:Dubbo入门之原理浅析date:2020-01-14 12:40:00author:wyatttop:truecate
                         </span>
                     </div>
                 </div>
+
                 
             </div>
         </div>
@@ -760,48 +804,32 @@ title:Dubbo入门之原理浅析date:2020-01-14 12:40:00author:wyatttop:truecate
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2018/09/07/my-first-blog/">
+                <a href="/2019/12/30/hello-world/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/1.jpg" class="responsive-img" alt="typora-vue-theme主题介绍">
+                        <img src="/medias/featureimages/12.jpg" class="responsive-img" alt="Hello World">
                         
-                        <span class="card-title">typora-vue-theme主题介绍</span>
+                        <span class="card-title">Hello World</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            这是你自定义的文章摘要内容，如果这个属性有值，文章卡片摘要就显示这段文字，否则程序会自动截取文章的部分内容作为摘要
+                            Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hex
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2018-09-07
+                                <i class="far fa-clock fa-fw icon-date"></i>2019-12-30
                             </span>
                         <span class="publish-author">
                             
-                            <i class="fas fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/categories/Markdown/" class="post-category">
-                                    Markdown
-                                </a>
-                            
+                            <i class="fas fa-user fa-fw"></i>
+                            Wyatt
                             
                         </span>
                     </div>
-                </div>
-                
-                <div class="card-action article-tags">
-                    
-                    <a href="/tags/Typora/">
-                        <span class="chip bg-color">Typora</span>
-                    </a>
-                    
-                    <a href="/tags/Markdown/">
-                        <span class="chip bg-color">Markdown</span>
-                    </a>
-                    
                 </div>
                 
             </div>

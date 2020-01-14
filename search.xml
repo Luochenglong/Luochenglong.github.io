@@ -1,20 +1,56 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>my-first-blog</title>
-    <url>/2020/01/01/my-first-blog/</url>
+    <title>Dubbo入门之原理浅析</title>
+    <url>/2020/01/14/dubbo-ru-men-zhi-yuan-li-qian-xi/</url>
     <content><![CDATA[<hr>
-<p>title: typora-vue-theme主题介绍<br>date: 2018-09-07 09:25:00<br>author: wyatt<br>top: true<br>cover: true<br>toc: false<br>mathjax: false<br>summary: 这是你自定义的文章摘要内容，如果这个属性有值，文章卡片摘要就显示这段文字，否则程序会自动截取文章的部分内容作为摘要<br>categories: Markdown<br>tags:</p>
-<ul>
-<li><p>Typora</p>
-</li>
-<li><p>Markdown</p>
+<p>title:Dubbo入门之原理浅析<br>date:2020-01-14 12:40:00<br>author:wyatt<br>top:true<br>categories:Java<br>tags:Dubbo   </p>
 <hr>
-<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=1374056689&auto=1&height=66"></iframe>
-
+<h5 id="一、什么是dubbo"><a href="#一、什么是dubbo" class="headerlink" title="一、什么是dubbo"></a>一、什么是dubbo</h5><p>  dubbo是Alibaba开源的分布式服务框架，它最大的特点是按照分层的方式来架构，使用这种方式可以使各个层之间解耦合（或者最大限度地松耦合）。从服务模型的角度来看，Dubbo采用一种非常简单的模型，要么是服务提供方提供服务，要么是消费方消费服务，所以基于这一点可以抽象出服务提供方（Provider）和服务消费2方（Consumer）两个角色。关于注册中心、协议支持和服务监控等内容。Webservice也是一种服务框架，但是Webservice并不是分布式的服务框架，他需要结合F5实现负载均衡。因此，dubbo除了可以提供服务之外，还可以实现软负载均衡。它还提供了两个功能Monitor监控中心和调用中心。还两个是可选的，需要单独配置。</p>
+<p>Dubbo是阿里巴巴SOA治理方案的核心框架，致力于提供高性能和透明化的RPC远程服务屌用方案，以及SOA服务治理方案。其核心部分包含：</p>
+<ul>
+<li><strong>远程通讯</strong> <strong>:</strong>提供对多种基于长连接的NIO框架抽象封装，包括多种线程模型，序列化，以及“请求-响应”模式的信息交换方式。</li>
+<li><strong>集群容错:</strong>提供基于接口方法的透明远程调用么，包括多协议支持，以及软负载均衡，失败容错，地址路由，动态配置等集群支持。</li>
+<li><strong>自动发现:</strong>基于注册中心目录服务，使服务消费方能动态得查找服务提供方，是地址透明，使服务提供方可以平滑增加或减少机器。</li>
+</ul>
+<h6 id="那么，Dubbo能做什么"><a href="#那么，Dubbo能做什么" class="headerlink" title="那么，Dubbo能做什么?"></a>那么，Dubbo能做什么?</h6><ul>
+<li>透明化的远程方法调用，就想调用本地方法一样调用远程方法，只需简单配置，没有任何API侵入。</li>
+<li>软负载均衡及容错机制，可以在内网替代F5等硬件负载均衡器，降低成本，减少单点。</li>
+<li>服务自动注册地与发现，不需要写死服务提供方法地址，注册中心基于接口名查询服务提供的IP地址，并且能够平滑添加或删除服务提供者。</li>
+</ul>
+<h5 id="Dubbo产生的背景"><a href="#Dubbo产生的背景" class="headerlink" title="Dubbo产生的背景"></a>Dubbo产生的背景</h5><p>随着互联网的发展，网站应用的规模不断扩大，常规的垂直应用架构已无法应对，分布式服务架构以及流动计算架构势在必行，亟需一个治理系统确保架构有条不紊的演进。</p>
+<p><img src="https://www.biaodianfu.com/wp-content/uploads/2014/11/dubbo-architecture.png" alt="img"> </p>
+<ul>
+<li>单一应用架构<ul>
+<li>当网站流量很小时，只需一个应用，将所有功能都部署都在一起，以减少部署节点和成本。</li>
+<li>此时，用于简化增删改查工作量的<strong>数据访问框架（ORM）</strong>是关键。</li>
+</ul>
+</li>
+<li>垂直应用架构<ul>
+<li>当访问量逐渐增大，单一应用增加机器带来的加速度越小，将应用拆分成互补想干的杰哥应用，以提升效率。</li>
+<li>此时，用于加速前端页面开发的<strong>Web框架(MVC)</strong>是关键。</li>
+</ul>
+</li>
+<li>分布式服务架构<ul>
+<li>当垂直应用越来越多，应用之间交互不可避免，将核心业务抽取出来，作为独立的服务，逐渐形成稳定的服务中心，使前端应用能更快苏的响应多变的市场需求。</li>
+<li>此时，用于提供业务复用一整合的<strong>分布式服务框架(RPC)</strong>是关键</li>
+</ul>
+</li>
+<li>流动计算架构<ul>
+<li>当服务越来越多，容量的评估，小服务资源的浪费等问题逐渐显现，此时需增加一个调度中心基于访问压力实时管理集群容量，提高集群利用率。</li>
+<li>此时，用于提高机器利用率的<strong>资源调度和治理中心(SOA)</strong>是关键</li>
+</ul>
 </li>
 </ul>
-<hr>
+<h5 id="Dubbo可以满足的需求"><a href="#Dubbo可以满足的需求" class="headerlink" title="Dubbo可以满足的需求"></a>Dubbo可以满足的需求</h5><p><img src="https://www.biaodianfu.com/wp-content/uploads/2014/11/dubbo.png" alt="img"> </p>
+<p>在大规模服务化之前，应用可能只是通过RMI或Hessian等工具，简单的暴露和引用远程服务，通过配置服务的URL地址进行调用，通过F5等硬件进行负载均衡。</p>
+<p><strong>(1)当服务越来越多时，服务URL配置管理变得非常困难，F5硬件负载均衡器单点压力也越来越大。</strong></p>
+<p>​    此时需要一个服务注册中心，动态的注册和发现服务，是服务的位置透明。</p>
+<p>   并通过在消费方获取服务提供方地址列表，实现软负载均衡和Failover，降低对F5硬件负载均衡器的依赖，也减少部分成本。</p>
+<p><strong>(2)当进一步发展,服务间依赖关系变得错综复杂，甚至分不清哪个应用之前启动，架构师都不能完整的描述应用的架构关系。</strong></p>
+<p>这时，需要自动画出应用间的依赖关系图，一帮助架构师清理关系。</p>
+<p><strong>（3）接着，服务的调用量越来越大，服务的容量问题就暴露出来了，这个服务需要多少台机器？什么时候改加机器？</strong></p>
+<p>为了解决这些问题，第一步，要将服务现在每天的调用量，响应时间，都统计处理，作为容量规划的参考指标。其次，要可以动态调整权重，在线上，蒋某太机器的权重一直加大，并在加大的过程中记录响应时间的变化，知道响应时间到达阈值，记录此时的访问量，再以此访问量乘以机器数反推总容量。</p>
 ]]></content>
   </entry>
   <entry>
@@ -30,5 +66,21 @@
 <h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><pre class=" language-bash"><code class="language-bash">$ hexo deploy</code></pre>
 <p>More info: <a href="https://hexo.io/docs/one-command-deployment.html" target="_blank" rel="noopener">Deployment</a></p>
 ]]></content>
+  </entry>
+  <entry>
+    <title>typora-vue-theme主题介绍</title>
+    <url>/2018/09/07/my-first-blog/</url>
+    <content><![CDATA[<hr>
+<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=1374056689&auto=1&height=66"></iframe>
+
+<hr>
+]]></content>
+      <categories>
+        <category>Markdown</category>
+      </categories>
+      <tags>
+        <tag>Typora</tag>
+        <tag>Markdown</tag>
+      </tags>
   </entry>
 </search>
