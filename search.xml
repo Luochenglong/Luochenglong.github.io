@@ -3,10 +3,7 @@
   <entry>
     <title>Dubbo入门之原理浅析</title>
     <url>/2020/01/14/dubbo-ru-men-zhi-yuan-li-qian-xi/</url>
-    <content><![CDATA[<hr>
-<p>title:Dubbo入门之原理浅析<br>date:2020-01-14 12:40:00<br>author:wyatt<br>top:true<br>categories:Java<br>tags:Dubbo   </p>
-<hr>
-<h5 id="一、什么是dubbo"><a href="#一、什么是dubbo" class="headerlink" title="一、什么是dubbo"></a>一、什么是dubbo</h5><p>  dubbo是Alibaba开源的分布式服务框架，它最大的特点是按照分层的方式来架构，使用这种方式可以使各个层之间解耦合（或者最大限度地松耦合）。从服务模型的角度来看，Dubbo采用一种非常简单的模型，要么是服务提供方提供服务，要么是消费方消费服务，所以基于这一点可以抽象出服务提供方（Provider）和服务消费2方（Consumer）两个角色。关于注册中心、协议支持和服务监控等内容。Webservice也是一种服务框架，但是Webservice并不是分布式的服务框架，他需要结合F5实现负载均衡。因此，dubbo除了可以提供服务之外，还可以实现软负载均衡。它还提供了两个功能Monitor监控中心和调用中心。还两个是可选的，需要单独配置。</p>
+    <content><![CDATA[<h5 id="一、什么是dubbo"><a href="#一、什么是dubbo" class="headerlink" title="一、什么是dubbo"></a>一、什么是dubbo</h5><p>  dubbo是Alibaba开源的分布式服务框架，它最大的特点是按照分层的方式来架构，使用这种方式可以使各个层之间解耦合（或者最大限度地松耦合）。从服务模型的角度来看，Dubbo采用一种非常简单的模型，要么是服务提供方提供服务，要么是消费方消费服务，所以基于这一点可以抽象出服务提供方（Provider）和服务消费2方（Consumer）两个角色。关于注册中心、协议支持和服务监控等内容。Webservice也是一种服务框架，但是Webservice并不是分布式的服务框架，他需要结合F5实现负载均衡。因此，dubbo除了可以提供服务之外，还可以实现软负载均衡。它还提供了两个功能Monitor监控中心和调用中心。还两个是可选的，需要单独配置。</p>
 <p>Dubbo是阿里巴巴SOA治理方案的核心框架，致力于提供高性能和透明化的RPC远程服务屌用方案，以及SOA服务治理方案。其核心部分包含：</p>
 <ul>
 <li><strong>远程通讯</strong> <strong>:</strong>提供对多种基于长连接的NIO框架抽象封装，包括多种线程模型，序列化，以及“请求-响应”模式的信息交换方式。</li>
@@ -52,6 +49,16 @@
 <p><strong>（3）接着，服务的调用量越来越大，服务的容量问题就暴露出来了，这个服务需要多少台机器？什么时候改加机器？</strong></p>
 <p>为了解决这些问题，第一步，要将服务现在每天的调用量，响应时间，都统计处理，作为容量规划的参考指标。其次，要可以动态调整权重，在线上，蒋某太机器的权重一直加大，并在加大的过程中记录响应时间的变化，知道响应时间到达阈值，记录此时的访问量，再以此访问量乘以机器数反推总容量。</p>
 ]]></content>
+      <categories>
+        <category>Dubbo</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+        <tag>Dubbo</tag>
+        <tag>RPC</tag>
+        <tag>SOA</tag>
+        <tag>分布式</tag>
+      </tags>
   </entry>
   <entry>
     <title>Hello World</title>

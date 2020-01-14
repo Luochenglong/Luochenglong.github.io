@@ -5,10 +5,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="keywords" content="Dubbo入门之原理浅析, Wyatt">
-    <meta name="description" content="
-title:Dubbo入门之原理浅析date:2020-01-14 12:40:00author:wyatttop:truecategories:Javatags:Dubbo   
-
-一、什么是dubbo  dubbo是Alibaba开源">
+    <meta name="description" content="Dubbo是阿里巴巴SOA治理方案的核心框架，致力于提供高性能和透明化的RPC远程服务屌用方案，以及SOA服务治理方案。">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -404,12 +401,41 @@ title:Dubbo入门之原理浅析date:2020-01-14 12:40:00author:wyatttop:truecate
             <div class="row tag-cate">
                 <div class="col s7">
                     
-                          <div class="article-tag">
-                            <span class="chip bg-color">无标签</span>
-                          </div>
+                    <div class="article-tag">
+                        
+                            <a href="/tags/Java/">
+                                <span class="chip bg-color">Java</span>
+                            </a>
+                        
+                            <a href="/tags/Dubbo/">
+                                <span class="chip bg-color">Dubbo</span>
+                            </a>
+                        
+                            <a href="/tags/RPC/">
+                                <span class="chip bg-color">RPC</span>
+                            </a>
+                        
+                            <a href="/tags/SOA/">
+                                <span class="chip bg-color">SOA</span>
+                            </a>
+                        
+                            <a href="/tags/%E5%88%86%E5%B8%83%E5%BC%8F/">
+                                <span class="chip bg-color">分布式</span>
+                            </a>
+                        
+                    </div>
                     
                 </div>
                 <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/Dubbo/" class="post-category">
+                                Dubbo
+                            </a>
+                        
+                    </div>
                     
                 </div>
             </div>
@@ -455,10 +481,7 @@ title:Dubbo入门之原理浅析date:2020-01-14 12:40:00author:wyatttop:truecate
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <hr>
-<p>title:Dubbo入门之原理浅析<br>date:2020-01-14 12:40:00<br>author:wyatt<br>top:true<br>categories:Java<br>tags:Dubbo   </p>
-<hr>
-<h5 id="一、什么是dubbo"><a href="#一、什么是dubbo" class="headerlink" title="一、什么是dubbo"></a>一、什么是dubbo</h5><p>  dubbo是Alibaba开源的分布式服务框架，它最大的特点是按照分层的方式来架构，使用这种方式可以使各个层之间解耦合（或者最大限度地松耦合）。从服务模型的角度来看，Dubbo采用一种非常简单的模型，要么是服务提供方提供服务，要么是消费方消费服务，所以基于这一点可以抽象出服务提供方（Provider）和服务消费2方（Consumer）两个角色。关于注册中心、协议支持和服务监控等内容。Webservice也是一种服务框架，但是Webservice并不是分布式的服务框架，他需要结合F5实现负载均衡。因此，dubbo除了可以提供服务之外，还可以实现软负载均衡。它还提供了两个功能Monitor监控中心和调用中心。还两个是可选的，需要单独配置。</p>
+                <h5 id="一、什么是dubbo"><a href="#一、什么是dubbo" class="headerlink" title="一、什么是dubbo"></a>一、什么是dubbo</h5><p>  dubbo是Alibaba开源的分布式服务框架，它最大的特点是按照分层的方式来架构，使用这种方式可以使各个层之间解耦合（或者最大限度地松耦合）。从服务模型的角度来看，Dubbo采用一种非常简单的模型，要么是服务提供方提供服务，要么是消费方消费服务，所以基于这一点可以抽象出服务提供方（Provider）和服务消费2方（Consumer）两个角色。关于注册中心、协议支持和服务监控等内容。Webservice也是一种服务框架，但是Webservice并不是分布式的服务框架，他需要结合F5实现负载均衡。因此，dubbo除了可以提供服务之外，还可以实现软负载均衡。它还提供了两个功能Monitor监控中心和调用中心。还两个是可选的，需要单独配置。</p>
 <p>Dubbo是阿里巴巴SOA治理方案的核心框架，致力于提供高性能和透明化的RPC远程服务屌用方案，以及SOA服务治理方案。其核心部分包含：</p>
 <ul>
 <li><strong>远程通讯</strong> <strong>:</strong>提供对多种基于长连接的NIO框架抽象封装，包括多种线程模型，序列化，以及“请求-响应”模式的信息交换方式。</li>
@@ -565,7 +588,27 @@ title:Dubbo入门之原理浅析date:2020-01-14 12:40:00author:wyatttop:truecate
                 <div class="post-meta__tag-list" style="display: inline-block;">
                     
                         <div class="article-tag">
-                            <span class="chip bg-color">无标签</span>
+                            
+                                <a href="/tags/Java/">
+                                    <span class="chip bg-color">Java</span>
+                                </a>
+                            
+                                <a href="/tags/Dubbo/">
+                                    <span class="chip bg-color">Dubbo</span>
+                                </a>
+                            
+                                <a href="/tags/RPC/">
+                                    <span class="chip bg-color">RPC</span>
+                                </a>
+                            
+                                <a href="/tags/SOA/">
+                                    <span class="chip bg-color">SOA</span>
+                                </a>
+                            
+                                <a href="/tags/%E5%88%86%E5%B8%83%E5%BC%8F/">
+                                    <span class="chip bg-color">分布式</span>
+                                </a>
+                            
                         </div>
                     
                 </div>
@@ -775,10 +818,7 @@ title:Dubbo入门之原理浅析date:2020-01-14 12:40:00author:wyatttop:truecate
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            
-title:Dubbo入门之原理浅析date:2020-01-14 12:40:00author:wyatttop:truecategories:Javatags:Dubbo   
-
-一、什么是dubbo  dubbo是Alibaba开源
+                            Dubbo是阿里巴巴SOA治理方案的核心框架，致力于提供高性能和透明化的RPC远程服务屌用方案，以及SOA服务治理方案。
                         
                     </div>
                     <div class="publish-info">
@@ -787,13 +827,41 @@ title:Dubbo入门之原理浅析date:2020-01-14 12:40:00author:wyatttop:truecate
                             </span>
                         <span class="publish-author">
                             
-                            <i class="fas fa-user fa-fw"></i>
-                            Wyatt
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/Dubbo/" class="post-category">
+                                    Dubbo
+                                </a>
+                            
                             
                         </span>
                     </div>
                 </div>
 
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/Java/">
+                        <span class="chip bg-color">Java</span>
+                    </a>
+                    
+                    <a href="/tags/Dubbo/">
+                        <span class="chip bg-color">Dubbo</span>
+                    </a>
+                    
+                    <a href="/tags/RPC/">
+                        <span class="chip bg-color">RPC</span>
+                    </a>
+                    
+                    <a href="/tags/SOA/">
+                        <span class="chip bg-color">SOA</span>
+                    </a>
+                    
+                    <a href="/tags/%E5%88%86%E5%B8%83%E5%BC%8F/">
+                        <span class="chip bg-color">分布式</span>
+                    </a>
+                    
+                </div>
                 
             </div>
         </div>
