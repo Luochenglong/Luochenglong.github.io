@@ -443,7 +443,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2020-01-14
+                    2020-01-15
                 </div>
                 
 
@@ -474,7 +474,7 @@
         <div class="card-content article-card-content">
             <div id="articleContent">
                 <p>由于我们的数据库在生产环境中要分片部署（MyCat）,所以我们不能使用数据库本身的自增功能来产生主键值，只能由程序来生成唯一的主键值。twitter推特 的开源的snowflake （雪花）算法是当下流行的解决此问题的方法。</p>
-<p><img src="https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=681512304,4245708660&fm=11&gp=0.jpg" alt="img">  </p>
+<p><img src="https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=681512304,4245708660&fm=11&gp=0.jpg" alt="结构图">  </p>
 <p>snowflake的结构如下(每部分用-分开):<br>0 - 0000000000 0000000000 0000000000 0000000000 0 - 00000 - 00000 - 000000000000<br>第一位为未使用，接下来的41位为毫秒级时间(41位的长度可以使用69年)，然后是5位datacenterId和5位workerId(10位的长度最多支持部署1024个节点） ，最后12位是毫秒内的计数（12位的计数顺序号支持每个节点每毫秒产生4096个ID序号）<br>一共加起来刚好64位，为一个Long型。(转换成字符串后长度最多19)<br>snowflake生成的ID整体上按照时间自增排序，并且整个分布式系统内不会产生ID碰撞（由datacenter和workerId作区分），并且效率较高。经测试snowflake每秒能够产生26万个ID</p>
 <p>保证每个机器的workerId和datacenterId不同，比如你有3台服务器，那么这3台服务器的配置分别设置为0,1,2 就行了<br>需要指定数据中心标识ID和机器进程标识ID</p>
 <p>问题：<br>系统时钟回退</p>
