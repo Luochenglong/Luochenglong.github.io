@@ -53,6 +53,7 @@ tutum/influxdb</code></pre>
   <span class="token punctuation">-</span>storage_driver_host=xxxx<span class="token punctuation">:</span>8086 </code></pre>
 <p>WEB前端访问地址:<a href="http://XXXX:8080/containers/" target="_blank" rel="noopener">http://XXXX:8080/containers/</a></p>
 <p>在此查看influxdb 发现已经有数据，表示成功，否则则需检查docker命令是否关联正确</p>
+<p><img src="https://images2018.cnblogs.com/blog/1288699/201803/1288699-20180316150547412-419621465.png" alt=""></p>
 <h3 id="3-Grafana"><a href="#3-Grafana" class="headerlink" title="3.Grafana"></a>3.Grafana</h3><h4 id="3-1什么是Grafana"><a href="#3-1什么是Grafana" class="headerlink" title="3.1什么是Grafana"></a>3.1什么是Grafana</h4><p>Grafana是一个可视化面板（Dashboard），有着非常漂亮的图表和布局展示，功能齐全的度量仪表盘和图形编辑器。支持Graphite、zabbix、InfluxDB、Prometheus和OpenTSDB作为数据源。Grafana主要特性：灵活丰富的图形化选项；可以混合多种风格；支持白天和夜间模式；多个数据源。</p>
 <h4 id="3-2-Grafana的安装"><a href="#3-2-Grafana的安装" class="headerlink" title="3.2 Grafana的安装"></a>3.2 Grafana的安装</h4><p>(1)下载镜像</p>
 <pre class=" language-docker"><code class="language-docker">docker pull grafana/grafana</code></pre>
@@ -63,9 +64,9 @@ INFLUXDB_PASS=cadvisor ‐‐link influxsrv<span class="token punctuation">:</sp
 <p>(3)访问</p>
 <p>地址:<a href="http://XXXX:3001" target="_blank" rel="noopener">http://XXXX:3001</a> </p>
 <h4 id="3-3-Grafana的使用"><a href="#3-3-Grafana的使用" class="headerlink" title="3.3 Grafana的使用"></a>3.3 Grafana的使用</h4><p>1.用户名和密码都是admin，初次需要修改密码</p>
-<p>![](F:\chrome download\image\blog\lol.qq.com_main.shtml.png)</p>
+<p><img src="https://images2018.cnblogs.com/blog/1288699/201803/1288699-20180316150733092-290666778.png" alt=""></p>
 <p>2.将Influxdb数据源添加入Grafana。 </p>
-<p>![](F:\chrome download\image\blog\1171094-20180606132940648-1404190398.png)</p>
+<p><img src="https://images2018.cnblogs.com/blog/1288699/201803/1288699-20180316143244767-1246766233.png" alt=""></p>
 <p>3.添加仪表盘</p>
 <p>​     (1)选择Dashboards –Manager           </p>
 <p>​     (2)点击“添加”按钮 </p>
@@ -75,6 +76,7 @@ INFLUXDB_PASS=cadvisor ‐‐link influxsrv<span class="token punctuation">:</sp
 <p>​    (6)设置查询的信息为内存，指定容器名称 </p>
 <p>​    (7)指定y轴的单位 为M </p>
 <p>​    (8)保存</p>
+<p><img src="https://images2018.cnblogs.com/blog/1288699/201803/1288699-20180316150421743-848540317.png" alt=""></p>
 <h4 id="3-4其他使用"><a href="#3-4其他使用" class="headerlink" title="3.4其他使用"></a>3.4其他使用</h4><p>Grafana 还有一些功能，比如设置预警线，实现容器的自动扩容与缩容</p>
 ]]></content>
       <categories>
@@ -540,8 +542,8 @@ cd dubbo/dubbo-demo/dubbo-demo-xml
         <category>Dubbo</category>
       </categories>
       <tags>
-        <tag>Java</tag>
         <tag>Dubbo</tag>
+        <tag>Java</tag>
         <tag>RPC</tag>
         <tag>SOA</tag>
         <tag>分布式</tag>
