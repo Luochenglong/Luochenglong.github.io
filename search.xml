@@ -270,9 +270,9 @@ INFLUXDB_PASS=cadvisor ‐‐link influxsrv<span class="token punctuation">:</sp
         <category>算法</category>
       </categories>
       <tags>
-        <tag>算法</tag>
-        <tag>分布式</tag>
         <tag>Java</tag>
+        <tag>分布式</tag>
+        <tag>算法</tag>
       </tags>
   </entry>
   <entry>
@@ -542,11 +542,11 @@ cd dubbo/dubbo-demo/dubbo-demo-xml
         <category>Dubbo</category>
       </categories>
       <tags>
-        <tag>Dubbo</tag>
-        <tag>分布式</tag>
         <tag>Java</tag>
+        <tag>Dubbo</tag>
         <tag>RPC</tag>
         <tag>SOA</tag>
+        <tag>分布式</tag>
       </tags>
   </entry>
   <entry>
