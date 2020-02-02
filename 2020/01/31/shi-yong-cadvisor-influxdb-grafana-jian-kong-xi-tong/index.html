@@ -473,12 +473,12 @@
 <h4 id="1-2Influxdb的安装"><a href="#1-2Influxdb的安装" class="headerlink" title="1.2Influxdb的安装"></a>1.2Influxdb的安装</h4><p>(1)下载镜像</p>
 <pre class=" language-docker"><code class="language-docker">docker pull tutum/influxdb</code></pre>
 <p>(2)创建容器</p>
-<pre class=" language-docker"><code class="language-docker">docker run ‐di \
-‐p 8083<span class="token punctuation">:</span>8083 \
-‐p 8086<span class="token punctuation">:</span>8086 \
-‐‐expose 8090 \
-‐‐expose 8099 \
-‐‐name influxsrv \
+<pre class=" language-docker"><code class="language-docker">docker run <span class="token punctuation">-</span>di \
+<span class="token punctuation">-</span>p 8083<span class="token punctuation">:</span>8083 \
+<span class="token punctuation">-</span>p 8086<span class="token punctuation">:</span>8086 \
+<span class="token punctuation">-</span><span class="token punctuation">-</span>expose 8090 \
+<span class="token punctuation">-</span><span class="token punctuation">-</span>expose 8099 \
+<span class="token punctuation">-</span><span class="token punctuation">-</span>name influxsrv \
 tutum/influxdb</code></pre>
 <p>端口概述： 8083端口:web访问端口 8086:</p>
 <p>打开浏览器 <a href="http://XXXX:8083/" target="_blank" rel="noopener">http://XXXX:8083/</a> </p>
@@ -524,9 +524,9 @@ tutum/influxdb</code></pre>
 <h4 id="3-2-Grafana的安装"><a href="#3-2-Grafana的安装" class="headerlink" title="3.2 Grafana的安装"></a>3.2 Grafana的安装</h4><p>(1)下载镜像</p>
 <pre class=" language-docker"><code class="language-docker">docker pull grafana/grafana</code></pre>
 <p>(2)创建容器</p>
-<pre class=" language-docker"><code class="language-docker">docker run ‐d ‐p 3001<span class="token punctuation">:</span>3000 ‐e INFLUXDB_HOST=influxsrv ‐e
-INFLUXDB_PORT=8086 ‐e INFLUXDB_NAME=cadvisor ‐e INFLUXDB_USER=cadvisor ‐e
-INFLUXDB_PASS=cadvisor ‐‐link influxsrv<span class="token punctuation">:</span>influxsrv ‐‐name grafana grafana/grafana</code></pre>
+<pre class=" language-docker"><code class="language-docker">docker run <span class="token punctuation">-</span>d <span class="token punctuation">-</span>p 3001<span class="token punctuation">:</span>3000 <span class="token punctuation">-</span>e INFLUXDB_HOST=influxsrv <span class="token punctuation">-</span>e
+INFLUXDB_PORT=8086 <span class="token punctuation">-</span>e INFLUXDB_NAME=cadvisor <span class="token punctuation">-</span>e INFLUXDB_USER=cadvisor <span class="token punctuation">-</span>e
+INFLUXDB_PASS=cadvisor <span class="token punctuation">-</span><span class="token punctuation">-</span>link influxsrv<span class="token punctuation">:</span>influxsrv <span class="token punctuation">-</span><span class="token punctuation">-</span>name grafana grafana/grafana</code></pre>
 <p>(3)访问</p>
 <p>地址:<a href="http://XXXX:3001" target="_blank" rel="noopener">http://XXXX:3001</a> </p>
 <h4 id="3-3-Grafana的使用"><a href="#3-3-Grafana的使用" class="headerlink" title="3.3 Grafana的使用"></a>3.3 Grafana的使用</h4><p>1.用户名和密码都是admin，初次需要修改密码</p>
