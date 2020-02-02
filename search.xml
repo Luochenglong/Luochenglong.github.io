@@ -1,6 +1,59 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>&#39;&#39;二分查找算法&#39;</title>
+    <url>/2020/02/02/er-fen-cha-zhao-suan-fa/</url>
+    <content><![CDATA[<h4 id="什么是二分查找算法"><a href="#什么是二分查找算法" class="headerlink" title="什么是二分查找算法?"></a>什么是二分查找算法?</h4><p>   二分查找(binary search)算法,又称折半搜搜索，在某一个有序数组中查找特定元素的搜索算法，搜索过程从中间开始，如果中间的元素恰好等于指定元素，就表示找到了，如果中间元素大于或小于指定元素，则将搜索空间折半，重复以上操作，如果某一步骤进行时数组以空，则表示没找到。</p>
+<ul>
+<li><p><strong>时间复杂度：O(logn)</strong></p>
+</li>
+<li><p><strong>空间复杂度：O(1),尾递归，可改为循环</strong>。</p>
+</li>
+</ul>
+<h4 id="图像演示"><a href="#图像演示" class="headerlink" title="图像演示"></a>图像演示</h4><p><img src="https://images.morethink.cn/binary-search.gif" alt=""></p>
+<h4 id="代码展示"><a href="#代码展示" class="headerlink" title="代码展示"></a>代码展示</h4><h5 id="非递归"><a href="#非递归" class="headerlink" title="非递归"></a>非递归</h5><pre class=" language-java"><code class="language-java"><span class="token keyword">static</span> <span class="token keyword">int</span> <span class="token function">binary</span><span class="token punctuation">(</span><span class="token keyword">int</span> i<span class="token punctuation">,</span> <span class="token keyword">int</span><span class="token punctuation">[</span><span class="token punctuation">]</span> arr<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">int</span> start <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+        <span class="token keyword">int</span> end <span class="token operator">=</span> arr<span class="token punctuation">.</span>length <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">;</span>
+        <span class="token keyword">while</span> <span class="token punctuation">(</span>start <span class="token operator">&lt;=</span> end<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">int</span> mid <span class="token operator">=</span> start <span class="token operator">+</span> <span class="token punctuation">(</span>end <span class="token operator">-</span> start<span class="token punctuation">)</span> <span class="token operator">/</span> <span class="token number">2</span><span class="token punctuation">;</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>arr<span class="token punctuation">[</span>mid<span class="token punctuation">]</span> <span class="token operator">==</span> i<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                <span class="token keyword">return</span> mid<span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>arr<span class="token punctuation">[</span>mid<span class="token punctuation">]</span> <span class="token operator">></span> i<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                end <span class="token operator">=</span> mid <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+                start <span class="token operator">=</span> mid <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">return</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span></code></pre>
+<h5 id="递归"><a href="#递归" class="headerlink" title="递归"></a>递归</h5><pre class=" language-java"><code class="language-java"><span class="token keyword">static</span> <span class="token keyword">int</span> <span class="token function">binary</span><span class="token punctuation">(</span><span class="token keyword">int</span><span class="token punctuation">[</span><span class="token punctuation">]</span> arr<span class="token punctuation">,</span> <span class="token keyword">int</span> start<span class="token punctuation">,</span> <span class="token keyword">int</span> end<span class="token punctuation">,</span> <span class="token keyword">int</span> target<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>start <span class="token operator">></span> end<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">return</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">int</span> mid<span class="token operator">=</span>start<span class="token operator">+</span><span class="token punctuation">(</span>end<span class="token operator">-</span>start<span class="token punctuation">)</span><span class="token operator">/</span><span class="token number">2</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span>arr<span class="token punctuation">[</span>mid<span class="token punctuation">]</span><span class="token operator">></span>target<span class="token punctuation">)</span><span class="token punctuation">{</span>
+            <span class="token keyword">return</span> <span class="token function">binary</span><span class="token punctuation">(</span>arr<span class="token punctuation">,</span>start<span class="token punctuation">,</span>mid<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">,</span>target<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span>arr<span class="token punctuation">[</span>mid<span class="token punctuation">]</span><span class="token operator">&lt;</span>target<span class="token punctuation">)</span><span class="token punctuation">{</span>
+            <span class="token keyword">return</span> <span class="token function">binary</span><span class="token punctuation">(</span>arr<span class="token punctuation">,</span>mid<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">,</span>end<span class="token punctuation">,</span>target<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">return</span> mid<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span></code></pre>
+<h4 id="中值的计算"><a href="#中值的计算" class="headerlink" title="中值的计算"></a>中值的计算</h4><pre class=" language-java"><code class="language-java">mid<span class="token operator">=</span><span class="token punctuation">(</span>start<span class="token operator">+</span>end<span class="token punctuation">)</span><span class="token operator">/</span><span class="token number">2</span></code></pre>
+<pre class=" language-java"><code class="language-java">mid<span class="token operator">=</span>start<span class="token operator">+</span><span class="token punctuation">(</span>end<span class="token operator">-</span>start<span class="token punctuation">)</span><span class="token operator">/</span><span class="token number">2</span></code></pre>
+<p>这两种计算结果是一样的，但在java中第一种处理方式更有可能出现溢出bug，start+end很大时。就会得到错误的中值。但是第二种处理使得mid一定小于end，大于start。不存在溢出风险。</p>
+<h4 id="二分查找法的缺陷"><a href="#二分查找法的缺陷" class="headerlink" title="二分查找法的缺陷"></a>二分查找法的缺陷</h4><p>二分查找法在时间复杂度上还算高效，但也存在明显的缺陷，就是数组必须有序，虽然使用java的工具类给数组排序十分方便，但在时空复杂度上就有一定的花费。并且查找也只能是数组。</p>
+]]></content>
+      <categories>
+        <category>算法</category>
+      </categories>
+      <tags>
+        <tag>算法</tag>
+        <tag>java</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>使用cAdvisor+Influxdb+Grafana监控系统</title>
     <url>/2020/01/31/shi-yong-cadvisor-influxdb-grafana-jian-kong-xi-tong/</url>
     <content><![CDATA[<h3 id="1-Influxdb"><a href="#1-Influxdb" class="headerlink" title="1.Influxdb"></a>1.Influxdb</h3><h4 id="1-1什么是Influxdb？"><a href="#1-1什么是Influxdb？" class="headerlink" title="1.1什么是Influxdb？"></a>1.1什么是Influxdb？</h4><p>influxdb是一个分布式时间序列数据库，cAdvisor仅仅是实时采集数据，但是不存储监控数据，所以我么需要用cAdvisor组件提供数据用于时序数据库influxdb存储</p>
@@ -270,9 +323,9 @@ INFLUXDB_PASS=cadvisor <span class="token punctuation">-</span><span class="toke
         <category>算法</category>
       </categories>
       <tags>
+        <tag>算法</tag>
         <tag>Java</tag>
         <tag>分布式</tag>
-        <tag>算法</tag>
       </tags>
   </entry>
   <entry>
@@ -485,8 +538,8 @@ cd dubbo/dubbo-demo/dubbo-demo-xml
         <category>RPC</category>
       </categories>
       <tags>
-        <tag>Java</tag>
         <tag>RPC</tag>
+        <tag>Java</tag>
       </tags>
   </entry>
   <entry>
@@ -542,9 +595,9 @@ cd dubbo/dubbo-demo/dubbo-demo-xml
         <category>Dubbo</category>
       </categories>
       <tags>
+        <tag>RPC</tag>
         <tag>Java</tag>
         <tag>Dubbo</tag>
-        <tag>RPC</tag>
         <tag>SOA</tag>
         <tag>分布式</tag>
       </tags>

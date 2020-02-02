@@ -4,8 +4,8 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="使用cAdvisor+Influxdb+Grafana监控系统, Wyatt">
-    <meta name="description" content="使用cAdvisor+Influxdb+Grafana监控系统，Influxdb+Grafana都是轻量级的应用但是功能异常强大。">
+    <meta name="keywords" content="&#39;&#39;二分查找算法&#39;, Wyatt">
+    <meta name="description" content="用java实现二分查找法">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -13,7 +13,7 @@
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>使用cAdvisor+Influxdb+Grafana监控系统 | Wyatt</title>
+    <title>&#39;&#39;二分查找算法&#39; | Wyatt</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -281,12 +281,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/12.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/22.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">使用cAdvisor+Influxdb+Grafana监控系统</h1>
+                    <h1 class="description center-align post-title">&#39;&#39;二分查找算法&#39;</h1>
                 </div>
             </div>
         </div>
@@ -403,12 +403,12 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/%E6%95%B0%E6%8D%AE%E7%9B%91%E6%8E%A7/">
-                                <span class="chip bg-color">数据监控</span>
+                            <a href="/tags/%E7%AE%97%E6%B3%95/">
+                                <span class="chip bg-color">算法</span>
                             </a>
                         
-                            <a href="/tags/Docker/">
-                                <span class="chip bg-color">Docker</span>
+                            <a href="/tags/java/">
+                                <span class="chip bg-color">java</span>
                             </a>
                         
                     </div>
@@ -419,8 +419,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/Linux/" class="post-category">
-                                Linux
+                            <a href="/categories/%E7%AE%97%E6%B3%95/" class="post-category">
+                                算法
                             </a>
                         
                     </div>
@@ -432,7 +432,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-01-31
+                    2020-02-02
                 </div>
                 
 
@@ -446,14 +446,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    751
+                    414
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    3 分
+                    1 分
                 </div>
                 
 				
@@ -469,81 +469,47 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h3 id="1-Influxdb"><a href="#1-Influxdb" class="headerlink" title="1.Influxdb"></a>1.Influxdb</h3><h4 id="1-1什么是Influxdb？"><a href="#1-1什么是Influxdb？" class="headerlink" title="1.1什么是Influxdb？"></a>1.1什么是Influxdb？</h4><p>influxdb是一个分布式时间序列数据库，cAdvisor仅仅是实时采集数据，但是不存储监控数据，所以我么需要用cAdvisor组件提供数据用于时序数据库influxdb存储</p>
-<h4 id="1-2Influxdb的安装"><a href="#1-2Influxdb的安装" class="headerlink" title="1.2Influxdb的安装"></a>1.2Influxdb的安装</h4><p>(1)下载镜像</p>
-<pre class=" language-docker"><code class="language-docker">docker pull tutum/influxdb</code></pre>
-<p>(2)创建容器</p>
-<pre class=" language-docker"><code class="language-docker">docker run <span class="token punctuation">-</span>di \
-<span class="token punctuation">-</span>p 8083<span class="token punctuation">:</span>8083 \
-<span class="token punctuation">-</span>p 8086<span class="token punctuation">:</span>8086 \
-<span class="token punctuation">-</span><span class="token punctuation">-</span>expose 8090 \
-<span class="token punctuation">-</span><span class="token punctuation">-</span>expose 8099 \
-<span class="token punctuation">-</span><span class="token punctuation">-</span>name influxsrv \
-tutum/influxdb</code></pre>
-<p>端口概述： 8083端口:web访问端口 8086:</p>
-<p>打开浏览器 <a href="http://XXXX:8083/" target="_blank" rel="noopener">http://XXXX:8083/</a> </p>
-<h4 id="1-3influxdb的常用操作"><a href="#1-3influxdb的常用操作" class="headerlink" title="1.3influxdb的常用操作"></a>1.3influxdb的常用操作</h4><p>基本操作最好使用模板 ，以免敲错</p>
-<h5 id="1-3-1创建数据库"><a href="#1-3-1创建数据库" class="headerlink" title="1.3.1创建数据库"></a>1.3.1创建数据库</h5><pre class=" language-sql"><code class="language-sql"><span class="token keyword">CREATE</span> <span class="token keyword">DATABASE</span> <span class="token string">"cadvisor"</span></code></pre>
-<p>回车创建数据库</p>
-<pre><code>SHOW DATABASES</code></pre><p>查看数据库</p>
-<h5 id="1-3-2创建用户并授权"><a href="#1-3-2创建用户并授权" class="headerlink" title="1.3.2创建用户并授权"></a>1.3.2创建用户并授权</h5><p>创建admin用户</p>
-<pre class=" language-sql"><code class="language-sql"><span class="token keyword">CREATE</span> <span class="token keyword">USER</span> <span class="token string">"cadvisor"</span> <span class="token keyword">WITH</span> PASSWORD <span class="token string">'cadvisor'</span> <span class="token keyword">WITH</span> <span class="token keyword">ALL</span> <span class="token keyword">PRIVILEGES</span></code></pre>
-<p>查看用户</p>
-<pre class=" language-sql"><code class="language-sql"><span class="token keyword">SHOW</span> USERS</code></pre>
-<p>用户授权</p>
-<pre class=" language-sql"><code class="language-sql"><span class="token keyword">grant</span> <span class="token keyword">all</span> <span class="token keyword">privileges</span> <span class="token keyword">on</span> cadvisor <span class="token keyword">to</span> cadvisor
-<span class="token keyword">grant</span> <span class="token keyword">WRITE</span> <span class="token keyword">on</span> cadvisor <span class="token keyword">to</span> cadvisor
-<span class="token keyword">grant</span> <span class="token keyword">READ</span> <span class="token keyword">on</span> cadvisor <span class="token keyword">to</span> cadvisor</code></pre>
-<h5 id="1-3-3查看采集数据"><a href="#1-3-3查看采集数据" class="headerlink" title="1.3.3查看采集数据"></a>1.3.3查看采集数据</h5><p>切换到cadvsior数据库</p>
-<pre class=" language-sql"><code class="language-sql"><span class="token keyword">SHOW</span> MEASUREMENTS</code></pre>
-<p>因为还没有使用cAdvisor，所以没有数据</p>
-<h3 id="2-cAdvisor"><a href="#2-cAdvisor" class="headerlink" title="2.cAdvisor"></a>2.cAdvisor</h3><h4 id="2-1什么是cAdvisor？"><a href="#2-1什么是cAdvisor？" class="headerlink" title="2.1什么是cAdvisor？"></a>2.1什么是cAdvisor？</h4><p>Google开源的用于监控基础设施应用的工具,它是一个强大的监控工具,不需要任何配置就可以通过运行在Docker主机上的容器来监控Docker容器，而且可以监控Docker主机.更多详细操作和配置选项可以查看Github上的cAdvisor项目文档</p>
-<h4 id="2-2cAdvisor的安装"><a href="#2-2cAdvisor的安装" class="headerlink" title="2.2cAdvisor的安装"></a>2.2cAdvisor的安装</h4><p>(1)下载镜像</p>
-<pre class=" language-docker"><code class="language-docker">docker pull docker pull google/cadvisor</code></pre>
-<p>(2)创建容器</p>
-<pre class=" language-docker"><code class="language-docker">sudo docker run \
-  <span class="token punctuation">-</span><span class="token punctuation">-</span>volume=/<span class="token punctuation">:</span>/rootfs<span class="token punctuation">:</span>ro \
-  <span class="token punctuation">-</span><span class="token punctuation">-</span>volume=/var/run<span class="token punctuation">:</span>/var/run<span class="token punctuation">:</span>rw \
-  <span class="token punctuation">-</span><span class="token punctuation">-</span>volume=/sys<span class="token punctuation">:</span>/sys<span class="token punctuation">:</span>ro \
-  <span class="token punctuation">-</span><span class="token punctuation">-</span>volume=/var/lib/docker/<span class="token punctuation">:</span>/var/lib/docker<span class="token punctuation">:</span>ro \
-  <span class="token punctuation">-</span><span class="token punctuation">-</span>volume=/dev/disk/<span class="token punctuation">:</span>/dev/disk<span class="token punctuation">:</span>ro \
-  <span class="token punctuation">-</span><span class="token punctuation">-</span>publish=8080<span class="token punctuation">:</span>8080 \
-  <span class="token punctuation">-</span><span class="token punctuation">-</span>detach=true \
-  <span class="token punctuation">-</span><span class="token punctuation">-</span>name=cadvisor \
-  <span class="token punctuation">-</span><span class="token punctuation">-</span>privileged=true \
-  google/cadvisor<span class="token punctuation">:</span>latest \
-  <span class="token punctuation">-</span>storage_driver=influxdb \
-  <span class="token punctuation">-</span>storage_driver_db=cadvisor \
-  <span class="token punctuation">-</span>storage_driver_user=xxxx \
-  <span class="token punctuation">-</span>storage_driver_password=xxxx \
-  <span class="token punctuation">-</span>storage_driver_host=xxxx<span class="token punctuation">:</span>8086 </code></pre>
-<p>WEB前端访问地址:<a href="http://XXXX:8080/containers/" target="_blank" rel="noopener">http://XXXX:8080/containers/</a></p>
-<p>在此查看influxdb 发现已经有数据，表示成功，否则则需检查docker命令是否关联正确</p>
-<p><img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1580628925094&di=a7d4a32c6ef46ba8a727a023c1ede415&imgtype=0&src=http%3A%2F%2F5b0988e595225.cdn.sohucs.com%2Fimages%2F20180713%2Fbfdb6995942b4f1487ec0b7f3c6c19db.jpeg" alt=""></p>
-<h3 id="3-Grafana"><a href="#3-Grafana" class="headerlink" title="3.Grafana"></a>3.Grafana</h3><h4 id="3-1什么是Grafana"><a href="#3-1什么是Grafana" class="headerlink" title="3.1什么是Grafana"></a>3.1什么是Grafana</h4><p>Grafana是一个可视化面板（Dashboard），有着非常漂亮的图表和布局展示，功能齐全的度量仪表盘和图形编辑器。支持Graphite、zabbix、InfluxDB、Prometheus和OpenTSDB作为数据源。Grafana主要特性：灵活丰富的图形化选项；可以混合多种风格；支持白天和夜间模式；多个数据源。</p>
-<h4 id="3-2-Grafana的安装"><a href="#3-2-Grafana的安装" class="headerlink" title="3.2 Grafana的安装"></a>3.2 Grafana的安装</h4><p>(1)下载镜像</p>
-<pre class=" language-docker"><code class="language-docker">docker pull grafana/grafana</code></pre>
-<p>(2)创建容器</p>
-<pre class=" language-docker"><code class="language-docker">docker run <span class="token punctuation">-</span>d <span class="token punctuation">-</span>p 3001<span class="token punctuation">:</span>3000 <span class="token punctuation">-</span>e INFLUXDB_HOST=influxsrv <span class="token punctuation">-</span>e
-INFLUXDB_PORT=8086 <span class="token punctuation">-</span>e INFLUXDB_NAME=cadvisor <span class="token punctuation">-</span>e INFLUXDB_USER=cadvisor <span class="token punctuation">-</span>e
-INFLUXDB_PASS=cadvisor <span class="token punctuation">-</span><span class="token punctuation">-</span>link influxsrv<span class="token punctuation">:</span>influxsrv <span class="token punctuation">-</span><span class="token punctuation">-</span>name grafana grafana/grafana</code></pre>
-<p>(3)访问</p>
-<p>地址:<a href="http://XXXX:3001" target="_blank" rel="noopener">http://XXXX:3001</a> </p>
-<h4 id="3-3-Grafana的使用"><a href="#3-3-Grafana的使用" class="headerlink" title="3.3 Grafana的使用"></a>3.3 Grafana的使用</h4><p>1.用户名和密码都是admin，初次需要修改密码</p>
-<p><img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1580628855406&di=8942b4cb8b97bb4d10d1c8bda886290d&imgtype=0&src=http%3A%2F%2Fimg.dongcoder.com%2Fup%2Finfo%2F201803%2F20180329230703837911.png" alt=""></p>
-<p>2.将Influxdb数据源添加入Grafana。 </p>
-<p><img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1580628811711&di=0cec2b26c4492b856538fb756ed914da&imgtype=jpg&src=http%3A%2F%2Fimg3.imgtn.bdimg.com%2Fit%2Fu%3D3793853198%2C3439546584%26fm%3D214%26gp%3D0.jpg" alt=""></p>
-<p>3.添加仪表盘</p>
-<p>​     (1)选择Dashboards –Manager           </p>
-<p>​     (2)点击“添加”按钮 </p>
-<p>​     (3)点击Graph 图标 </p>
-<p>​         (4)出现下面图表的界面 ，点击Panel Title 选择Edit (编辑) </p>
-<p>​     (5)定义标题等基础信息 </p>
-<p>​    (6)设置查询的信息为内存，指定容器名称 </p>
-<p>​    (7)指定y轴的单位 为M </p>
-<p>​    (8)保存</p>
-<p><img src="https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=3637038230,3047050570&fm=26&gp=0.jpg" alt=""></p>
-<h4 id="3-4其他使用"><a href="#3-4其他使用" class="headerlink" title="3.4其他使用"></a>3.4其他使用</h4><p>Grafana 还有一些功能，比如设置预警线，实现容器的自动扩容与缩容</p>
+                <h4 id="什么是二分查找算法"><a href="#什么是二分查找算法" class="headerlink" title="什么是二分查找算法?"></a>什么是二分查找算法?</h4><p>   二分查找(binary search)算法,又称折半搜搜索，在某一个有序数组中查找特定元素的搜索算法，搜索过程从中间开始，如果中间的元素恰好等于指定元素，就表示找到了，如果中间元素大于或小于指定元素，则将搜索空间折半，重复以上操作，如果某一步骤进行时数组以空，则表示没找到。</p>
+<ul>
+<li><p><strong>时间复杂度：O(logn)</strong></p>
+</li>
+<li><p><strong>空间复杂度：O(1),尾递归，可改为循环</strong>。</p>
+</li>
+</ul>
+<h4 id="图像演示"><a href="#图像演示" class="headerlink" title="图像演示"></a>图像演示</h4><p><img src="https://images.morethink.cn/binary-search.gif" alt=""></p>
+<h4 id="代码展示"><a href="#代码展示" class="headerlink" title="代码展示"></a>代码展示</h4><h5 id="非递归"><a href="#非递归" class="headerlink" title="非递归"></a>非递归</h5><pre class=" language-java"><code class="language-java"><span class="token keyword">static</span> <span class="token keyword">int</span> <span class="token function">binary</span><span class="token punctuation">(</span><span class="token keyword">int</span> i<span class="token punctuation">,</span> <span class="token keyword">int</span><span class="token punctuation">[</span><span class="token punctuation">]</span> arr<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">int</span> start <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+        <span class="token keyword">int</span> end <span class="token operator">=</span> arr<span class="token punctuation">.</span>length <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">;</span>
+        <span class="token keyword">while</span> <span class="token punctuation">(</span>start <span class="token operator">&lt;=</span> end<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">int</span> mid <span class="token operator">=</span> start <span class="token operator">+</span> <span class="token punctuation">(</span>end <span class="token operator">-</span> start<span class="token punctuation">)</span> <span class="token operator">/</span> <span class="token number">2</span><span class="token punctuation">;</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>arr<span class="token punctuation">[</span>mid<span class="token punctuation">]</span> <span class="token operator">==</span> i<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                <span class="token keyword">return</span> mid<span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>arr<span class="token punctuation">[</span>mid<span class="token punctuation">]</span> <span class="token operator">></span> i<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                end <span class="token operator">=</span> mid <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+                start <span class="token operator">=</span> mid <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">return</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span></code></pre>
+<h5 id="递归"><a href="#递归" class="headerlink" title="递归"></a>递归</h5><pre class=" language-java"><code class="language-java"><span class="token keyword">static</span> <span class="token keyword">int</span> <span class="token function">binary</span><span class="token punctuation">(</span><span class="token keyword">int</span><span class="token punctuation">[</span><span class="token punctuation">]</span> arr<span class="token punctuation">,</span> <span class="token keyword">int</span> start<span class="token punctuation">,</span> <span class="token keyword">int</span> end<span class="token punctuation">,</span> <span class="token keyword">int</span> target<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>start <span class="token operator">></span> end<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">return</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">int</span> mid<span class="token operator">=</span>start<span class="token operator">+</span><span class="token punctuation">(</span>end<span class="token operator">-</span>start<span class="token punctuation">)</span><span class="token operator">/</span><span class="token number">2</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span>arr<span class="token punctuation">[</span>mid<span class="token punctuation">]</span><span class="token operator">></span>target<span class="token punctuation">)</span><span class="token punctuation">{</span>
+            <span class="token keyword">return</span> <span class="token function">binary</span><span class="token punctuation">(</span>arr<span class="token punctuation">,</span>start<span class="token punctuation">,</span>mid<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">,</span>target<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span>arr<span class="token punctuation">[</span>mid<span class="token punctuation">]</span><span class="token operator">&lt;</span>target<span class="token punctuation">)</span><span class="token punctuation">{</span>
+            <span class="token keyword">return</span> <span class="token function">binary</span><span class="token punctuation">(</span>arr<span class="token punctuation">,</span>mid<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">,</span>end<span class="token punctuation">,</span>target<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">return</span> mid<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span></code></pre>
+<h4 id="中值的计算"><a href="#中值的计算" class="headerlink" title="中值的计算"></a>中值的计算</h4><pre class=" language-java"><code class="language-java">mid<span class="token operator">=</span><span class="token punctuation">(</span>start<span class="token operator">+</span>end<span class="token punctuation">)</span><span class="token operator">/</span><span class="token number">2</span></code></pre>
+<pre class=" language-java"><code class="language-java">mid<span class="token operator">=</span>start<span class="token operator">+</span><span class="token punctuation">(</span>end<span class="token operator">-</span>start<span class="token punctuation">)</span><span class="token operator">/</span><span class="token number">2</span></code></pre>
+<p>这两种计算结果是一样的，但在java中第一种处理方式更有可能出现溢出bug，start+end很大时。就会得到错误的中值。但是第二种处理使得mid一定小于end，大于start。不存在溢出风险。</p>
+<h4 id="二分查找法的缺陷"><a href="#二分查找法的缺陷" class="headerlink" title="二分查找法的缺陷"></a>二分查找法的缺陷</h4><p>二分查找法在时间复杂度上还算高效，但也存在明显的缺陷，就是数组必须有序，虽然使用java的工具类给数组排序十分方便，但在时空复杂度上就有一定的花费。并且查找也只能是数组。</p>
 
             </div>
             <hr/>
@@ -569,7 +535,7 @@ INFLUXDB_PASS=cadvisor <span class="token punctuation">-</span><span class="toke
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://www.wyatt.asia/2020/01/31/shi-yong-cadvisor-influxdb-grafana-jian-kong-xi-tong/">https://www.wyatt.asia/2020/01/31/shi-yong-cadvisor-influxdb-grafana-jian-kong-xi-tong/</a>
+                    <a href="https://www.wyatt.asia/2020/02/02/er-fen-cha-zhao-suan-fa/">https://www.wyatt.asia/2020/02/02/er-fen-cha-zhao-suan-fa/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -607,12 +573,12 @@ INFLUXDB_PASS=cadvisor <span class="token punctuation">-</span><span class="toke
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/%E6%95%B0%E6%8D%AE%E7%9B%91%E6%8E%A7/">
-                                    <span class="chip bg-color">数据监控</span>
+                                <a href="/tags/%E7%AE%97%E6%B3%95/">
+                                    <span class="chip bg-color">算法</span>
                                 </a>
                             
-                                <a href="/tags/Docker/">
-                                    <span class="chip bg-color">Docker</span>
+                                <a href="/tags/java/">
+                                    <span class="chip bg-color">java</span>
                                 </a>
                             
                         </div>
@@ -807,9 +773,10 @@ INFLUXDB_PASS=cadvisor <span class="token punctuation">-</span><span class="toke
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
                 <a href="/2020/02/02/er-fen-cha-zhao-suan-fa/">
                     <div class="card-image">
@@ -827,9 +794,9 @@ INFLUXDB_PASS=cadvisor <span class="token punctuation">-</span><span class="toke
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-02-02
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-02-02
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -842,6 +809,7 @@ INFLUXDB_PASS=cadvisor <span class="token punctuation">-</span><span class="toke
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -864,31 +832,31 @@ INFLUXDB_PASS=cadvisor <span class="token punctuation">-</span><span class="toke
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/01/14/xue-hua-suan-fa/">
+                <a href="/2020/01/31/shi-yong-cadvisor-influxdb-grafana-jian-kong-xi-tong/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/5.jpg" class="responsive-img" alt="雪花算法">
+                        <img src="/medias/featureimages/12.jpg" class="responsive-img" alt="使用cAdvisor+Influxdb+Grafana监控系统">
                         
-                        <span class="card-title">雪花算法</span>
+                        <span class="card-title">使用cAdvisor+Influxdb+Grafana监控系统</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            全局唯一ID生成服务 Twitter的分布式自增ID算法snowflake (Java版)
+                            使用cAdvisor+Influxdb+Grafana监控系统，Influxdb+Grafana都是轻量级的应用但是功能异常强大。
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-01-14
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-01-31
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/%E7%AE%97%E6%B3%95/" class="post-category">
-                                    算法
+                            <a href="/categories/Linux/" class="post-category">
+                                    Linux
                                 </a>
                             
                             
@@ -898,16 +866,12 @@ INFLUXDB_PASS=cadvisor <span class="token punctuation">-</span><span class="toke
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/%E7%AE%97%E6%B3%95/">
-                        <span class="chip bg-color">算法</span>
+                    <a href="/tags/%E6%95%B0%E6%8D%AE%E7%9B%91%E6%8E%A7/">
+                        <span class="chip bg-color">数据监控</span>
                     </a>
                     
-                    <a href="/tags/Java/">
-                        <span class="chip bg-color">Java</span>
-                    </a>
-                    
-                    <a href="/tags/%E5%88%86%E5%B8%83%E5%BC%8F/">
-                        <span class="chip bg-color">分布式</span>
+                    <a href="/tags/Docker/">
+                        <span class="chip bg-color">Docker</span>
                     </a>
                     
                 </div>
