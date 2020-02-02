@@ -323,9 +323,9 @@ INFLUXDB_PASS=cadvisor <span class="token punctuation">-</span><span class="toke
         <category>算法</category>
       </categories>
       <tags>
+        <tag>算法</tag>
         <tag>Java</tag>
         <tag>分布式</tag>
-        <tag>算法</tag>
       </tags>
   </entry>
   <entry>
@@ -600,22 +600,6 @@ cd dubbo/dubbo-demo/dubbo-demo-xml
         <tag>RPC</tag>
         <tag>SOA</tag>
         <tag>分布式</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>typora-vue-theme主题介绍</title>
-    <url>/2018/09/07/my-first-blog/</url>
-    <content><![CDATA[<hr>
-<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=1374056689&auto=1&height=66"></iframe>
-
-<hr>
-]]></content>
-      <categories>
-        <category>Markdown</category>
-      </categories>
-      <tags>
-        <tag>Typora</tag>
-        <tag>Markdown</tag>
       </tags>
   </entry>
 </search>
