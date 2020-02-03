@@ -9,7 +9,7 @@
 <li><strong>空间复杂度：O(1)</strong></li>
 <li><strong>稳定性:不稳定</strong></li>
 </ul>
-<h4 id="动画演示"><a href="#动画演示" class="headerlink" title="动画演示"></a>动画演示</h4><p><img src="https://upload-images.jianshu.io/upload_images/3974900-7f11775a973dd68d.gif?imageMogr2/auto-orient/strip%7CimageView2/2/w/1200/format/webp" alt=""></p>
+<h4 id="动画演示"><a href="#动画演示" class="headerlink" title="动画演示"></a>动画演示</h4><p><img src="https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=2864635313,3409308785&fm=26&gp=0.jpg" alt=""></p>
 <h4 id="代码展示"><a href="#代码展示" class="headerlink" title="代码展示"></a>代码展示</h4><pre class=" language-java"><code class="language-java"><span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">sort</span><span class="token punctuation">(</span><span class="token keyword">int</span><span class="token punctuation">[</span><span class="token punctuation">]</span> a<span class="token punctuation">)</span> <span class="token punctuation">{</span>
         <span class="token keyword">int</span> N <span class="token operator">=</span> a<span class="token punctuation">.</span>length<span class="token punctuation">;</span>
         <span class="token keyword">int</span> h <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
