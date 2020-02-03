@@ -4,8 +4,8 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="Dubbo入门之原理浅析, Wyatt">
-    <meta name="description" content="Dubbo是阿里巴巴SOA治理方案的核心框架，致力于提供高性能和透明化的RPC远程服务屌用方案，以及SOA服务治理方案。">
+    <meta name="keywords" content="希尔排序, Wyatt">
+    <meta name="description" content="插入排序的升级版希尔排序">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -13,7 +13,7 @@
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>Dubbo入门之原理浅析 | Wyatt</title>
+    <title>希尔排序 | Wyatt</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -281,12 +281,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/4.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/13.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">Dubbo入门之原理浅析</h1>
+                    <h1 class="description center-align post-title">希尔排序</h1>
                 </div>
             </div>
         </div>
@@ -403,24 +403,16 @@
                     
                     <div class="article-tag">
                         
+                            <a href="/tags/%E7%AE%97%E6%B3%95/">
+                                <span class="chip bg-color">算法</span>
+                            </a>
+                        
                             <a href="/tags/Java/">
                                 <span class="chip bg-color">Java</span>
                             </a>
                         
-                            <a href="/tags/Dubbo/">
-                                <span class="chip bg-color">Dubbo</span>
-                            </a>
-                        
-                            <a href="/tags/RPC/">
-                                <span class="chip bg-color">RPC</span>
-                            </a>
-                        
-                            <a href="/tags/SOA/">
-                                <span class="chip bg-color">SOA</span>
-                            </a>
-                        
-                            <a href="/tags/%E5%88%86%E5%B8%83%E5%BC%8F/">
-                                <span class="chip bg-color">分布式</span>
+                            <a href="/tags/%E6%8E%92%E5%BA%8F/">
+                                <span class="chip bg-color">排序</span>
                             </a>
                         
                     </div>
@@ -431,8 +423,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/Dubbo/" class="post-category">
-                                Dubbo
+                            <a href="/categories/%E7%AE%97%E6%B3%95/" class="post-category">
+                                算法
                             </a>
                         
                     </div>
@@ -444,28 +436,28 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-01-14
+                    2020-02-03
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2020-01-14
+                    2020-02-03
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1.4k
+                    481
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    4 分
+                    1 分
                 </div>
                 
 				
@@ -481,51 +473,29 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h5 id="一、什么是dubbo"><a href="#一、什么是dubbo" class="headerlink" title="一、什么是dubbo"></a>一、什么是dubbo</h5><p>  dubbo是Alibaba开源的分布式服务框架，它最大的特点是按照分层的方式来架构，使用这种方式可以使各个层之间解耦合（或者最大限度地松耦合）。从服务模型的角度来看，Dubbo采用一种非常简单的模型，要么是服务提供方提供服务，要么是消费方消费服务，所以基于这一点可以抽象出服务提供方（Provider）和服务消费2方（Consumer）两个角色。关于注册中心、协议支持和服务监控等内容。Webservice也是一种服务框架，但是Webservice并不是分布式的服务框架，他需要结合F5实现负载均衡。因此，dubbo除了可以提供服务之外，还可以实现软负载均衡。它还提供了两个功能Monitor监控中心和调用中心。还两个是可选的，需要单独配置。</p>
-<p>Dubbo是阿里巴巴SOA治理方案的核心框架，致力于提供高性能和透明化的RPC远程服务屌用方案，以及SOA服务治理方案。其核心部分包含：</p>
+                <h4 id="什么是希尔排序"><a href="#什么是希尔排序" class="headerlink" title="什么是希尔排序?"></a>什么是希尔排序?</h4><p>希尔排序的思想是使数组中任意间隔为 h 的元素都是有序的。这样的数组被称为 h 有序数组。换句话说，一个 h 有序数组就是 h 个互相独立的有序数组编织在一起组成的一个数组。在进行排序时，如果 h 很大，我们就能将元素移动到很远的地方，为实现更小的 h 有序创造方便。用这种方式，对于任意以 1 结尾的 h 序列，我们都能够将数组排序。这就是希尔排序。(此段出自算法(第四版))。也可以称为缩小增量排序。知道增量为一时，便是插入排序。因为我们知道插入排序对于有序的小规模的数组排序时很高效的，但其实这两种情况都比较少见。所以希尔排序对其进行了改进。</p>
 <ul>
-<li><strong>远程通讯</strong> <strong>:</strong>提供对多种基于长连接的NIO框架抽象封装，包括多种线程模型，序列化，以及“请求-响应”模式的信息交换方式。</li>
-<li><strong>集群容错:</strong>提供基于接口方法的透明远程调用么，包括多协议支持，以及软负载均衡，失败容错，地址路由，动态配置等集群支持。</li>
-<li><strong>自动发现:</strong>基于注册中心目录服务，使服务消费方能动态得查找服务提供方，是地址透明，使服务提供方可以平滑增加或减少机器。</li>
+<li><strong>时间复杂度：平均O(n^1.3),最好为O(n),最坏为0(n ^ 2)</strong></li>
+<li><strong>空间复杂度：O(1)</strong></li>
+<li><strong>稳定性:不稳定</strong></li>
 </ul>
-<h6 id="那么，Dubbo能做什么"><a href="#那么，Dubbo能做什么" class="headerlink" title="那么，Dubbo能做什么?"></a>那么，Dubbo能做什么?</h6><ul>
-<li>透明化的远程方法调用，就想调用本地方法一样调用远程方法，只需简单配置，没有任何API侵入。</li>
-<li>软负载均衡及容错机制，可以在内网替代F5等硬件负载均衡器，降低成本，减少单点。</li>
-<li>服务自动注册地与发现，不需要写死服务提供方法地址，注册中心基于接口名查询服务提供的IP地址，并且能够平滑添加或删除服务提供者。</li>
-</ul>
-<h5 id="Dubbo产生的背景"><a href="#Dubbo产生的背景" class="headerlink" title="Dubbo产生的背景"></a>Dubbo产生的背景</h5><p>随着互联网的发展，网站应用的规模不断扩大，常规的垂直应用架构已无法应对，分布式服务架构以及流动计算架构势在必行，亟需一个治理系统确保架构有条不紊的演进。</p>
-<p><img src="http://dubbo.apache.org/docs/zh-cn/user/sources/images/dubbo-architecture-roadmap.jpg" alt="架构演进"> </p>
-<ul>
-<li>单一应用架构<ul>
-<li>当网站流量很小时，只需一个应用，将所有功能都部署都在一起，以减少部署节点和成本。</li>
-<li>此时，用于简化增删改查工作量的<strong>数据访问框架（ORM）</strong>是关键。</li>
-</ul>
-</li>
-<li>垂直应用架构<ul>
-<li>当访问量逐渐增大，单一应用增加机器带来的加速度越小，将应用拆分成互补想干的杰哥应用，以提升效率。</li>
-<li>此时，用于加速前端页面开发的<strong>Web框架(MVC)</strong>是关键。</li>
-</ul>
-</li>
-<li>分布式服务架构<ul>
-<li>当垂直应用越来越多，应用之间交互不可避免，将核心业务抽取出来，作为独立的服务，逐渐形成稳定的服务中心，使前端应用能更快苏的响应多变的市场需求。</li>
-<li>此时，用于提供业务复用一整合的<strong>分布式服务框架(RPC)</strong>是关键</li>
-</ul>
-</li>
-<li>流动计算架构<ul>
-<li>当服务越来越多，容量的评估，小服务资源的浪费等问题逐渐显现，此时需增加一个调度中心基于访问压力实时管理集群容量，提高集群利用率。</li>
-<li>此时，用于提高机器利用率的<strong>资源调度和治理中心(SOA)</strong>是关键</li>
-</ul>
-</li>
-</ul>
-<h5 id="Dubbo可以满足的需求"><a href="#Dubbo可以满足的需求" class="headerlink" title="Dubbo可以满足的需求"></a>Dubbo可以满足的需求</h5><p><img src="http://dubbo.apache.org/docs/zh-cn/user/sources/images/dubbo-service-governance.jpg" alt="服务分层"> </p>
-<p>在大规模服务化之前，应用可能只是通过RMI或Hessian等工具，简单的暴露和引用远程服务，通过配置服务的URL地址进行调用，通过F5等硬件进行负载均衡。</p>
-<p><strong>(1)当服务越来越多时，服务URL配置管理变得非常困难，F5硬件负载均衡器单点压力也越来越大。</strong></p>
-<p>​    此时需要一个服务注册中心，动态的注册和发现服务，是服务的位置透明。</p>
-<p>   并通过在消费方获取服务提供方地址列表，实现软负载均衡和Failover，降低对F5硬件负载均衡器的依赖，也减少部分成本。</p>
-<p><strong>(2)当进一步发展,服务间依赖关系变得错综复杂，甚至分不清哪个应用之前启动，架构师都不能完整的描述应用的架构关系。</strong></p>
-<p>这时，需要自动画出应用间的依赖关系图，一帮助架构师清理关系。</p>
-<p><strong>（3）接着，服务的调用量越来越大，服务的容量问题就暴露出来了，这个服务需要多少台机器？什么时候改加机器？</strong></p>
-<p>为了解决这些问题，第一步，要将服务现在每天的调用量，响应时间，都统计处理，作为容量规划的参考指标。其次，要可以动态调整权重，在线上，蒋某太机器的权重一直加大，并在加大的过程中记录响应时间的变化，知道响应时间到达阈值，记录此时的访问量，再以此访问量乘以机器数反推总容量。</p>
+<h4 id="动画演示"><a href="#动画演示" class="headerlink" title="动画演示"></a>动画演示</h4><p><img src="https://upload-images.jianshu.io/upload_images/3974900-7f11775a973dd68d.gif?imageMogr2/auto-orient/strip%7CimageView2/2/w/1200/format/webp" alt=""></p>
+<h4 id="代码展示"><a href="#代码展示" class="headerlink" title="代码展示"></a>代码展示</h4><pre class=" language-java"><code class="language-java"><span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">sort</span><span class="token punctuation">(</span><span class="token keyword">int</span><span class="token punctuation">[</span><span class="token punctuation">]</span> a<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">int</span> N <span class="token operator">=</span> a<span class="token punctuation">.</span>length<span class="token punctuation">;</span>
+        <span class="token keyword">int</span> h <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>h <span class="token operator">&lt;</span> N <span class="token operator">/</span> <span class="token number">3</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            h <span class="token operator">=</span> <span class="token number">3</span> <span class="token operator">*</span> h <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">while</span> <span class="token punctuation">(</span>h <span class="token operator">>=</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> h<span class="token punctuation">;</span> i <span class="token operator">&lt;</span> N<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> j <span class="token operator">=</span> i<span class="token punctuation">;</span> j <span class="token operator">>=</span> h <span class="token operator">&amp;&amp;</span> a<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token operator">&lt;</span>a<span class="token punctuation">[</span>j<span class="token operator">-</span>h<span class="token punctuation">]</span><span class="token punctuation">;</span> j <span class="token operator">-=</span> h<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                    <span class="token function">exch</span><span class="token punctuation">(</span>a<span class="token punctuation">,</span> j<span class="token punctuation">,</span> j <span class="token operator">-</span> h<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token punctuation">}</span>
+            <span class="token punctuation">}</span>
+            h <span class="token operator">=</span> h <span class="token operator">/</span> <span class="token number">3</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span></code></pre>
+<h4 id="关于希尔增量的取法？"><a href="#关于希尔增量的取法？" class="headerlink" title="关于希尔增量的取法？"></a>关于希尔增量的取法？</h4><p>关于增量有很多取法，起初希尔提出n/2向下取整，直到取到1为止。但由于直到最后一步，在奇数位置的元素才会与偶数位置的元素进行比较，这样使用这个序列的效率会很低。后来Knuth提出取n/3向下取整+1.还有人提出都取奇数为好，也有人提出增量互质为好。应用不同的序列会使希尔排序算法的性能有很大的差异。</p>
 
             </div>
             <hr/>
@@ -551,7 +521,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://www.wyatt.asia/2020/01/14/dubbo-ru-men-zhi-yuan-li-qian-xi/">https://www.wyatt.asia/2020/01/14/dubbo-ru-men-zhi-yuan-li-qian-xi/</a>
+                    <a href="https://www.wyatt.asia/2020/02/03/xi-er-pai-xu/">https://www.wyatt.asia/2020/02/03/xi-er-pai-xu/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -589,24 +559,16 @@
                     
                         <div class="article-tag">
                             
+                                <a href="/tags/%E7%AE%97%E6%B3%95/">
+                                    <span class="chip bg-color">算法</span>
+                                </a>
+                            
                                 <a href="/tags/Java/">
                                     <span class="chip bg-color">Java</span>
                                 </a>
                             
-                                <a href="/tags/Dubbo/">
-                                    <span class="chip bg-color">Dubbo</span>
-                                </a>
-                            
-                                <a href="/tags/RPC/">
-                                    <span class="chip bg-color">RPC</span>
-                                </a>
-                            
-                                <a href="/tags/SOA/">
-                                    <span class="chip bg-color">SOA</span>
-                                </a>
-                            
-                                <a href="/tags/%E5%88%86%E5%B8%83%E5%BC%8F/">
-                                    <span class="chip bg-color">分布式</span>
+                                <a href="/tags/%E6%8E%92%E5%BA%8F/">
+                                    <span class="chip bg-color">排序</span>
                                 </a>
                             
                         </div>
@@ -801,88 +763,36 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2020/01/14/qian-tan-rpc/">
+                <a href="/2020/02/03/xi-er-pai-xu/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/18.jpg" class="responsive-img" alt="浅谈RPC">
+                        <img src="/medias/featureimages/13.jpg" class="responsive-img" alt="希尔排序">
                         
-                        <span class="card-title">浅谈RPC</span>
+                        <span class="card-title">希尔排序</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            近几年随着微服务化项目的崛起，逐渐成为许多公司中大型分布式系统架构的主流方式，而今天所说的 RPC 在这其中扮演着至关重要的角色。
-                        
-                    </div>
-                    <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-01-14
-                        </span>
-                        <span class="publish-author">
-                            
-                            <i class="fas fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/categories/RPC/" class="post-category">
-                                    RPC
-                                </a>
-                            
-                            
-                        </span>
-                    </div>
-                </div>
-                
-                <div class="card-action article-tags">
-                    
-                    <a href="/tags/Java/">
-                        <span class="chip bg-color">Java</span>
-                    </a>
-                    
-                    <a href="/tags/RPC/">
-                        <span class="chip bg-color">RPC</span>
-                    </a>
-                    
-                </div>
-                
-            </div>
-        </div>
-        
-        
-        <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge right-badge text-color">
-                本篇&nbsp;<i class="far fa-dot-circle"></i>
-            </div>
-            <div class="card">
-                <a href="/2020/01/14/dubbo-ru-men-zhi-yuan-li-qian-xi/">
-                    <div class="card-image">
-                        
-                        
-                        <img src="/medias/featureimages/4.jpg" class="responsive-img" alt="Dubbo入门之原理浅析">
-                        
-                        <span class="card-title">Dubbo入门之原理浅析</span>
-                    </div>
-                </a>
-                <div class="card-content article-content">
-                    <div class="summary block-with-text">
-                        
-                            Dubbo是阿里巴巴SOA治理方案的核心框架，致力于提供高性能和透明化的RPC远程服务屌用方案，以及SOA服务治理方案。
+                            插入排序的升级版希尔排序
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-01-14
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-02-03
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/Dubbo/" class="post-category">
-                                    Dubbo
+                            <a href="/categories/%E7%AE%97%E6%B3%95/" class="post-category">
+                                    算法
                                 </a>
                             
                             
@@ -893,24 +803,69 @@
                 
                 <div class="card-action article-tags">
                     
+                    <a href="/tags/%E7%AE%97%E6%B3%95/">
+                        <span class="chip bg-color">算法</span>
+                    </a>
+                    
                     <a href="/tags/Java/">
                         <span class="chip bg-color">Java</span>
                     </a>
                     
-                    <a href="/tags/Dubbo/">
-                        <span class="chip bg-color">Dubbo</span>
+                    <a href="/tags/%E6%8E%92%E5%BA%8F/">
+                        <span class="chip bg-color">排序</span>
                     </a>
                     
-                    <a href="/tags/RPC/">
-                        <span class="chip bg-color">RPC</span>
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2020/02/02/er-fen-cha-zhao-suan-fa/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/23.jpg" class="responsive-img" alt="二分查找算法">
+                        
+                        <span class="card-title">二分查找算法</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            用java实现二分查找法
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-02-02
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E7%AE%97%E6%B3%95/" class="post-category">
+                                    算法
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E7%AE%97%E6%B3%95/">
+                        <span class="chip bg-color">算法</span>
                     </a>
                     
-                    <a href="/tags/SOA/">
-                        <span class="chip bg-color">SOA</span>
-                    </a>
-                    
-                    <a href="/tags/%E5%88%86%E5%B8%83%E5%BC%8F/">
-                        <span class="chip bg-color">分布式</span>
+                    <a href="/tags/Java/">
+                        <span class="chip bg-color">Java</span>
                     </a>
                     
                 </div>
