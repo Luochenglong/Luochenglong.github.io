@@ -1,6 +1,81 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>快速排序</title>
+    <url>/2020/02/05/kuai-su-pai-xu/</url>
+    <content><![CDATA[<h4 id="快速排序"><a href="#快速排序" class="headerlink" title="快速排序"></a>快速排序</h4><p> 快速排序可能呢是应用最广泛的排序算法，其原因是它适用于不同的输入数据且在一般应用中比其他排序算法快很多。快速排序的思想是原地排序，只需要很小的辅助栈。且时间复杂度为nlogn。大部分的排序算法很难将这两点结合起来。另外快速排序的内循环也很短小，所以在实际过程中它还要更快。快速排序是分治思想的典型例子。它的主要思路为，在数组中随便找一个轴，然后把比它大的放右边，比它小的放左边。这样整个数组就有一定的顺序了，然后重复以上步骤（轴的相对位置是固定的，便于递归)，知道整个数组都有序。</p>
+<p><strong>时间复杂度：O(nlogn)</strong></p>
+<h4 id="动画演示"><a href="#动画演示" class="headerlink" title="动画演示"></a>动画演示</h4><p><img src="https://img-blog.csdn.net/20161009191035090" alt=""></p>
+<p>​     <img src="https://upload.wikimedia.org/wikipedia/commons/6/6a/Sorting_quicksort_anim.gif" alt=""></p>
+<h4 id="代码展示"><a href="#代码展示" class="headerlink" title="代码展示"></a>代码展示</h4><pre class=" language-java"><code class="language-java">    <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">sort</span><span class="token punctuation">(</span><span class="token keyword">int</span><span class="token punctuation">[</span><span class="token punctuation">]</span> a<span class="token punctuation">,</span> <span class="token keyword">int</span> leftBound<span class="token punctuation">,</span> <span class="token keyword">int</span> rightBound<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>leftBound <span class="token operator">>=</span> rightBound<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">return</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">int</span> mid <span class="token operator">=</span> <span class="token function">partition</span><span class="token punctuation">(</span>a<span class="token punctuation">,</span> leftBound<span class="token punctuation">,</span> rightBound<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token function">sort</span><span class="token punctuation">(</span>a<span class="token punctuation">,</span> leftBound<span class="token punctuation">,</span> mid <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token function">sort</span><span class="token punctuation">(</span>a<span class="token punctuation">,</span> mid <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">,</span> rightBound<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">int</span> <span class="token function">partition</span><span class="token punctuation">(</span><span class="token keyword">int</span><span class="token punctuation">[</span><span class="token punctuation">]</span> a<span class="token punctuation">,</span> <span class="token keyword">int</span> leftBound<span class="token punctuation">,</span> <span class="token keyword">int</span> rightBound<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">int</span> left <span class="token operator">=</span> leftBound<span class="token punctuation">;</span>
+        <span class="token keyword">int</span> right <span class="token operator">=</span> rightBound <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">;</span>
+        <span class="token keyword">int</span> pivot <span class="token operator">=</span> rightBound<span class="token punctuation">;</span>
+        <span class="token keyword">while</span> <span class="token punctuation">(</span>left <span class="token operator">&lt;</span> right<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">while</span> <span class="token punctuation">(</span>left <span class="token operator">&lt;=</span> right <span class="token operator">&amp;&amp;</span> a<span class="token punctuation">[</span>left<span class="token punctuation">]</span> <span class="token operator">&lt;=</span> a<span class="token punctuation">[</span>pivot<span class="token punctuation">]</span><span class="token punctuation">)</span> left<span class="token operator">++</span><span class="token punctuation">;</span>
+            <span class="token keyword">while</span> <span class="token punctuation">(</span>left <span class="token operator">&lt;</span> right <span class="token operator">&amp;&amp;</span> a<span class="token punctuation">[</span>right<span class="token punctuation">]</span> <span class="token operator">></span> a<span class="token punctuation">[</span>pivot<span class="token punctuation">]</span><span class="token punctuation">)</span> right<span class="token operator">--</span><span class="token punctuation">;</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>left <span class="token operator">&lt;</span> right<span class="token punctuation">)</span>   <span class="token function">exch</span><span class="token punctuation">(</span>a<span class="token punctuation">,</span> left<span class="token punctuation">,</span> right<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token function">exch</span><span class="token punctuation">(</span>a<span class="token punctuation">,</span> left<span class="token punctuation">,</span> pivot<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span> left<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+</code></pre>
+<h4 id="算法改进"><a href="#算法改进" class="headerlink" title="算法改进"></a>算法改进</h4><p> 尽管原始的快速排序已经是很高效的排序算法，但从快速排序诞生之初，许多人就已经热衷于对快速排序的改进。以使它更好的平衡性。下面有几种改进思路。实际性能以实际生产为准。</p>
+<h5 id="1-切换到插入排序"><a href="#1-切换到插入排序" class="headerlink" title="1.切换到插入排序"></a>1.切换到插入排序</h5><p>很大多数递归算法一样，改进快速排序的简单方法是基于一下两点：</p>
+<ul>
+<li>对于小数组，快速排序必插入排序慢</li>
+<li>因为递归，sort()方法在小数组中一样会调用自己。</li>
+</ul>
+<p>因此在小数组中，应该切换到插入排序算法中，简单的实现就是讲sort()中的：</p>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">if</span> <span class="token punctuation">(</span>leftBound <span class="token operator">>=</span> rightBound<span class="token punctuation">)</span> <span class="token keyword">return</span><span class="token punctuation">;</span></code></pre>
+<p>改为</p>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">if</span> <span class="token punctuation">(</span>rightBound <span class="token operator">&lt;=</span> leftBound <span class="token operator">+</span> M<span class="token punctuation">)</span> <span class="token punctuation">{</span> Insertion<span class="token punctuation">.</span><span class="token function">sort</span><span class="token punctuation">(</span>a<span class="token punctuation">,</span> leftBound<span class="token punctuation">,</span> rightBound<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token keyword">return</span><span class="token punctuation">;</span> <span class="token punctuation">}</span></code></pre>
+<p>转换参数M和系统相关，在5-15之间的任意值在大多数情况下都会令你满意。</p>
+<h5 id="2-三取样切分"><a href="#2-三取样切分" class="headerlink" title="2.三取样切分"></a>2.三取样切分</h5><p>改进快速排序性能的第二个办法是使用子数组的一小部分元素的中位数来切分数组。这样做得到的切分更好，但代价是需要计算中位数。人们发现将取样大小设为 3 并用大小居中的元素切分的效果最好。我们还可以将取样元素放在数组末尾作为“哨兵”来去掉 partition() 中的数组边界测试。</p>
+<h5 id="3-熵最优的排序"><a href="#3-熵最优的排序" class="headerlink" title="3.熵最优的排序"></a>3.熵最优的排序</h5><p>实际应用中经常会出现含有大量重复元素的数组 ,一个元素全部重复的子数组就不需要继续排序了，但我们的算法还会继续将它切分为更小的数组。在有大量重复元素的情况下，快速排序的递归性会使元素全部重复的子数组经常出现，这就有很大的改进潜力，将当前实现的线性对数级的性能提高到线性级别。 Dijkstra 提供了一种方法“三向切分的快速排序” </p>
+<p><strong>三向切分的快速排序：</strong></p>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Quick3way</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword">private</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">sort</span><span class="token punctuation">(</span>Comparable<span class="token punctuation">[</span><span class="token punctuation">]</span> a<span class="token punctuation">,</span> <span class="token keyword">int</span> lo<span class="token punctuation">,</span> <span class="token keyword">int</span> hi<span class="token punctuation">)</span>
+    <span class="token punctuation">{</span> <span class="token comment" spellcheck="true">// 调用此方法的公有方法sort()请见算法2.5</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>hi <span class="token operator">&lt;=</span> lo<span class="token punctuation">)</span> <span class="token keyword">return</span><span class="token punctuation">;</span>
+        <span class="token keyword">int</span> lt <span class="token operator">=</span> lo<span class="token punctuation">,</span> i <span class="token operator">=</span> lo<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">,</span> gt <span class="token operator">=</span> hi<span class="token punctuation">;</span>
+        Comparable v <span class="token operator">=</span> a<span class="token punctuation">[</span>lo<span class="token punctuation">]</span><span class="token punctuation">;</span>
+        <span class="token keyword">while</span> <span class="token punctuation">(</span>i <span class="token operator">&lt;=</span> gt<span class="token punctuation">)</span>
+        <span class="token punctuation">{</span>
+            <span class="token keyword">int</span> cmp <span class="token operator">=</span> a<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">compareTo</span><span class="token punctuation">(</span>v<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>cmp <span class="token operator">&lt;</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token function">exch</span><span class="token punctuation">(</span>a<span class="token punctuation">,</span> lt<span class="token operator">++</span><span class="token punctuation">,</span> i<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>cmp <span class="token operator">></span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token function">exch</span><span class="token punctuation">(</span>a<span class="token punctuation">,</span> i<span class="token punctuation">,</span> gt<span class="token operator">--</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">else</span> i<span class="token operator">++</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span> <span class="token comment" spellcheck="true">// 现在 a[lo..lt-1] &lt; v = a[lt..gt] &lt; a[gt+1..hi]成立</span>
+        <span class="token function">sort</span><span class="token punctuation">(</span>a<span class="token punctuation">,</span> lo<span class="token punctuation">,</span> lt <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token function">sort</span><span class="token punctuation">(</span>a<span class="token punctuation">,</span> gt <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">,</span> hi<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
+<hr>
+<p><strong>以上对快速排序的改进思路与代码都出自《算法》第四版，特此感谢作者与译者，如有侵权请联系本人</strong></p>
+<p>​    </p>
+]]></content>
+      <categories>
+        <category>算法</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+        <tag>算法</tag>
+        <tag>排序</tag>
+        <tag>分治</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>归并排序</title>
     <url>/2020/02/04/gui-bing-pai-xu/</url>
     <content><![CDATA[<h4 id="什么是归并排序"><a href="#什么是归并排序" class="headerlink" title="什么是归并排序?"></a>什么是归并排序?</h4><p>归并是指将两个有序的数组归并成一个更大的有序数组，基于这种思想，便有了归并排序。归并排序的实现思路也大致分为两种，第一种是将一个大的数组递归地分成两半，并排序。然后归并到大数组中。第二种思想是首先进行两两归并（把每个元素想象成一个大小为 1 的数组），然后是四四归并（将两个大小为 2 的数组归并成一个有 4个元素的数组），然后是八八的归并，一直下去。最后一次归并及时出现一个子数组比另外一个数组大很多，也没有关系。因为我们可以在归并的时候进行处理。</p>
@@ -97,8 +172,8 @@
         <category>算法</category>
       </categories>
       <tags>
-        <tag>算法</tag>
         <tag>Java</tag>
+        <tag>算法</tag>
         <tag>排序</tag>
         <tag>递归</tag>
       </tags>
@@ -134,8 +209,8 @@
         <category>算法</category>
       </categories>
       <tags>
-        <tag>算法</tag>
         <tag>Java</tag>
+        <tag>算法</tag>
         <tag>排序</tag>
       </tags>
   </entry>
@@ -188,8 +263,8 @@
         <category>算法</category>
       </categories>
       <tags>
-        <tag>算法</tag>
         <tag>Java</tag>
+        <tag>算法</tag>
       </tags>
   </entry>
   <entry>
@@ -462,8 +537,8 @@ INFLUXDB_PASS=cadvisor <span class="token punctuation">-</span><span class="toke
         <category>算法</category>
       </categories>
       <tags>
-        <tag>算法</tag>
         <tag>Java</tag>
+        <tag>算法</tag>
         <tag>分布式</tag>
       </tags>
   </entry>
@@ -734,11 +809,11 @@ cd dubbo/dubbo-demo/dubbo-demo-xml
         <category>Dubbo</category>
       </categories>
       <tags>
-        <tag>Dubbo</tag>
         <tag>Java</tag>
+        <tag>Dubbo</tag>
         <tag>RPC</tag>
-        <tag>分布式</tag>
         <tag>SOA</tag>
+        <tag>分布式</tag>
       </tags>
   </entry>
 </search>
