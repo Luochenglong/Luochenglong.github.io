@@ -69,8 +69,8 @@
         <category>算法</category>
       </categories>
       <tags>
-        <tag>Java</tag>
         <tag>算法</tag>
+        <tag>Java</tag>
         <tag>排序</tag>
         <tag>分治</tag>
       </tags>
@@ -172,8 +172,8 @@
         <category>算法</category>
       </categories>
       <tags>
-        <tag>Java</tag>
         <tag>算法</tag>
+        <tag>Java</tag>
         <tag>排序</tag>
         <tag>递归</tag>
       </tags>
@@ -209,8 +209,8 @@
         <category>算法</category>
       </categories>
       <tags>
-        <tag>Java</tag>
         <tag>算法</tag>
+        <tag>Java</tag>
         <tag>排序</tag>
       </tags>
   </entry>
@@ -263,8 +263,8 @@
         <category>算法</category>
       </categories>
       <tags>
-        <tag>Java</tag>
         <tag>算法</tag>
+        <tag>Java</tag>
       </tags>
   </entry>
   <entry>
@@ -537,9 +537,9 @@ INFLUXDB_PASS=cadvisor <span class="token punctuation">-</span><span class="toke
         <category>算法</category>
       </categories>
       <tags>
+        <tag>算法</tag>
         <tag>Java</tag>
         <tag>分布式</tag>
-        <tag>算法</tag>
       </tags>
   </entry>
   <entry>
@@ -809,8 +809,8 @@ cd dubbo/dubbo-demo/dubbo-demo-xml
         <category>Dubbo</category>
       </categories>
       <tags>
-        <tag>Dubbo</tag>
         <tag>Java</tag>
+        <tag>Dubbo</tag>
         <tag>RPC</tag>
         <tag>SOA</tag>
         <tag>分布式</tag>
