@@ -1,6 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>堆排序</title>
+    <url>/2020/02/06/dui-pai-xu/</url>
+    <content><![CDATA[<h4 id="堆排序"><a href="#堆排序" class="headerlink" title="堆排序"></a>堆排序</h4><p>堆排序与优先队列的基于二叉堆实现有着一样的原理基础，堆排序的过程包括对的构造和下沉两个阶段。首先将数组元素建成大小为n的大顶堆，堆顶（数组第一个元素）是所有元素中的最大值，将堆顶元素和数组最后一个元素进行交换，再将除了最后一个数的n-1个元素建立成大顶堆，再将最大元素和数组倒数第二个元素进行交换，重复直至堆大小减为1。 </p>
+<p><strong>时间复杂度：nlogn</strong></p>
+<h4 id="动画演示"><a href="#动画演示" class="headerlink" title="动画演示"></a>动画演示</h4><p><img src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9pbWFnZXMyMDE3LmNuYmxvZ3MuY29tL2Jsb2cvODQ5NTg5LzIwMTcxMC84NDk1ODktMjAxNzEwMTUyMzEzMDg2OTktMzU2MTM0MjM3LmdpZg" alt=""></p>
+<p><img src="https://img-blog.csdn.net/20161009191011299" alt=""></p>
+<h4 id="代码展示"><a href="#代码展示" class="headerlink" title="代码展示"></a>代码展示</h4><pre class=" language-java"><code class="language-java">  <span class="token keyword">private</span> <span class="token keyword">static</span> <span class="token keyword">boolean</span> <span class="token function">less</span><span class="token punctuation">(</span><span class="token keyword">int</span><span class="token punctuation">[</span><span class="token punctuation">]</span> a<span class="token punctuation">,</span> <span class="token keyword">int</span> i<span class="token punctuation">,</span> <span class="token keyword">int</span> j<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> a<span class="token punctuation">[</span>i<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">-</span> a<span class="token punctuation">[</span>j<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">&lt;</span> <span class="token number">0</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">private</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">exch</span><span class="token punctuation">(</span><span class="token keyword">int</span><span class="token punctuation">[</span><span class="token punctuation">]</span> a<span class="token punctuation">,</span> <span class="token keyword">int</span> i<span class="token punctuation">,</span> <span class="token keyword">int</span> j<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">int</span> temp <span class="token operator">=</span> a<span class="token punctuation">[</span>i<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+        a<span class="token punctuation">[</span>i<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">=</span> a<span class="token punctuation">[</span>j<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+        a<span class="token punctuation">[</span>j<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">=</span> temp<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">private</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">sink</span><span class="token punctuation">(</span><span class="token keyword">int</span><span class="token punctuation">[</span><span class="token punctuation">]</span> a<span class="token punctuation">,</span> <span class="token keyword">int</span> k<span class="token punctuation">,</span> <span class="token keyword">int</span> N<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">while</span> <span class="token punctuation">(</span><span class="token number">2</span> <span class="token operator">*</span> k <span class="token operator">&lt;=</span> N<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">int</span> j <span class="token operator">=</span> <span class="token number">2</span> <span class="token operator">*</span> k<span class="token punctuation">;</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>j <span class="token operator">&lt;</span> N <span class="token operator">&amp;&amp;</span> <span class="token function">less</span><span class="token punctuation">(</span>a<span class="token punctuation">,</span> j<span class="token punctuation">,</span> j<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">)</span> j<span class="token operator">++</span><span class="token punctuation">;</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span><span class="token function">less</span><span class="token punctuation">(</span>a<span class="token punctuation">,</span> k<span class="token punctuation">,</span> j<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token keyword">break</span><span class="token punctuation">;</span>
+            <span class="token function">exch</span><span class="token punctuation">(</span>a<span class="token punctuation">,</span> k<span class="token punctuation">,</span> j<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            k <span class="token operator">=</span> j<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">sort</span><span class="token punctuation">(</span><span class="token keyword">int</span><span class="token punctuation">[</span><span class="token punctuation">]</span> a<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">int</span> N <span class="token operator">=</span> a<span class="token punctuation">.</span>length<span class="token punctuation">;</span>
+        <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> k <span class="token operator">=</span> N <span class="token operator">/</span> <span class="token number">2</span><span class="token punctuation">;</span> k <span class="token operator">>=</span> <span class="token number">1</span><span class="token punctuation">;</span> k<span class="token operator">--</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token function">sink</span><span class="token punctuation">(</span>a<span class="token punctuation">,</span> k<span class="token punctuation">,</span> N<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+
+        <span class="token keyword">while</span> <span class="token punctuation">(</span>N <span class="token operator">></span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token function">exch</span><span class="token punctuation">(</span>a<span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> N<span class="token operator">--</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token function">sink</span><span class="token punctuation">(</span>a<span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> N<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span></code></pre>
+]]></content>
+      <tags>
+        <tag>Java</tag>
+        <tag>算法</tag>
+        <tag>排序</tag>
+        <tag>优雅的排序</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>基于二叉堆的优先队列实现</title>
     <url>/2020/02/06/ji-yu-er-cha-dui-de-you-xian-dui-lie-shi-xian/</url>
     <content><![CDATA[<h4 id="优先队列"><a href="#优先队列" class="headerlink" title="优先队列"></a>优先队列</h4><p>优先队列的实现有很多种，但通常都以堆为基础的数据结构实现，例如二叉堆、d堆、左式堆、斜堆、二项堆,斐波那契堆、pairing 堆 等 ,数据结构二叉堆能够很好地实现优先队列的基本操作。在二叉堆的数组中，每个元素都要保证大于等于另两个特定位置的元素。相应地，这些位置的元素又至少要大于等于数组中的另两个元素，以此类推。如果我们将所有元素画成一棵二叉树，将每个较大元素和两个较小的元素用边连接就可以很容易看出这种结构。</p>
@@ -644,8 +690,8 @@ INFLUXDB_PASS=cadvisor <span class="token punctuation">-</span><span class="toke
       </categories>
       <tags>
         <tag>Java</tag>
-        <tag>分布式</tag>
         <tag>算法</tag>
+        <tag>分布式</tag>
       </tags>
   </entry>
   <entry>
