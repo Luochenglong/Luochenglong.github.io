@@ -4,8 +4,8 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="二分查找算法, Wyatt">
-    <meta name="description" content="用java实现二分查找法">
+    <meta name="keywords" content="基于二叉堆的优先队列实现, Wyatt">
+    <meta name="description" content="抽象数据类型-&gt;优先队列">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -13,7 +13,7 @@
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>二分查找算法 | Wyatt</title>
+    <title>基于二叉堆的优先队列实现 | Wyatt</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -281,12 +281,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/21.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/40.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">二分查找算法</h1>
+                    <h1 class="description center-align post-title">基于二叉堆的优先队列实现</h1>
                 </div>
             </div>
         </div>
@@ -407,8 +407,20 @@
                                 <span class="chip bg-color">Java</span>
                             </a>
                         
+                            <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">
+                                <span class="chip bg-color">数据结构</span>
+                            </a>
+                        
                             <a href="/tags/%E7%AE%97%E6%B3%95/">
                                 <span class="chip bg-color">算法</span>
+                            </a>
+                        
+                            <a href="/tags/%E4%BC%98%E5%85%88%E9%98%9F%E5%88%97/">
+                                <span class="chip bg-color">优先队列</span>
+                            </a>
+                        
+                            <a href="/tags/%E5%A0%86/">
+                                <span class="chip bg-color">堆</span>
                             </a>
                         
                     </div>
@@ -419,8 +431,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/%E7%AE%97%E6%B3%95/" class="post-category">
-                                算法
+                            <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" class="post-category">
+                                数据结构
                             </a>
                         
                     </div>
@@ -432,28 +444,28 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-02-02
+                    2020-02-06
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2020-02-03
+                    2020-02-06
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    414
+                    602
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    1 分
+                    2 分
                 </div>
                 
 				
@@ -469,47 +481,97 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h4 id="什么是二分查找算法"><a href="#什么是二分查找算法" class="headerlink" title="什么是二分查找算法?"></a>什么是二分查找算法?</h4><p>   二分查找(binary search)算法,又称折半搜搜索，在某一个有序数组中查找特定元素的搜索算法，搜索过程从中间开始，如果中间的元素恰好等于指定元素，就表示找到了，如果中间元素大于或小于指定元素，则将搜索空间折半，重复以上操作，如果某一步骤进行时数组以空，则表示没找到。</p>
-<ul>
-<li><p><strong>时间复杂度：O(logn)</strong></p>
-</li>
-<li><p><strong>空间复杂度：O(1),尾递归，可改为循环</strong>。</p>
-</li>
-</ul>
-<h4 id="图像演示"><a href="#图像演示" class="headerlink" title="图像演示"></a>图像演示</h4><p><img src="https://images.morethink.cn/binary-search.gif" alt=""></p>
-<h4 id="代码展示"><a href="#代码展示" class="headerlink" title="代码展示"></a>代码展示</h4><h5 id="非递归"><a href="#非递归" class="headerlink" title="非递归"></a>非递归</h5><pre class=" language-java"><code class="language-java"><span class="token keyword">static</span> <span class="token keyword">int</span> <span class="token function">binary</span><span class="token punctuation">(</span><span class="token keyword">int</span> target<span class="token punctuation">,</span> <span class="token keyword">int</span><span class="token punctuation">[</span><span class="token punctuation">]</span> arr<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token keyword">int</span> start <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
-        <span class="token keyword">int</span> end <span class="token operator">=</span> arr<span class="token punctuation">.</span>length <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">;</span>
-        <span class="token keyword">while</span> <span class="token punctuation">(</span>start <span class="token operator">&lt;=</span> end<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-            <span class="token keyword">int</span> mid <span class="token operator">=</span> start <span class="token operator">+</span> <span class="token punctuation">(</span>end <span class="token operator">-</span> start<span class="token punctuation">)</span> <span class="token operator">/</span> <span class="token number">2</span><span class="token punctuation">;</span>
-            <span class="token keyword">if</span> <span class="token punctuation">(</span>arr<span class="token punctuation">[</span>mid<span class="token punctuation">]</span> <span class="token operator">==</span> target<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-                <span class="token keyword">return</span> mid<span class="token punctuation">;</span>
-            <span class="token punctuation">}</span>
-            <span class="token keyword">if</span> <span class="token punctuation">(</span>arr<span class="token punctuation">[</span>mid<span class="token punctuation">]</span> <span class="token operator">></span> target<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-                end <span class="token operator">=</span> mid <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">;</span>
-            <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
-                start <span class="token operator">=</span> mid <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">;</span>
-            <span class="token punctuation">}</span>
+                <h4 id="优先队列"><a href="#优先队列" class="headerlink" title="优先队列"></a>优先队列</h4><p>优先队列的实现有很多种，但通常都以堆为基础的数据结构实现，例如二叉堆、d堆、左式堆、斜堆、二项堆,斐波那契堆、pairing 堆 等 ,数据结构二叉堆能够很好地实现优先队列的基本操作。在二叉堆的数组中，每个元素都要保证大于等于另两个特定位置的元素。相应地，这些位置的元素又至少要大于等于数组中的另两个元素，以此类推。如果我们将所有元素画成一棵二叉树，将每个较大元素和两个较小的元素用边连接就可以很容易看出这种结构。</p>
+<h4 id="二叉堆的表示"><a href="#二叉堆的表示" class="headerlink" title="二叉堆的表示"></a>二叉堆的表示</h4><p>二叉堆可以用完全二叉树基于数组表示，应为这样不需要指针就可以表示。在一个二叉堆中，位置 k 的结点的父结点的位置为k/2，而它的两个子结点的位置则分别为 2k 和 2k+1。而树中的上下移动可以表示为：从 a[k] 向上一层就令 k 等于 k/2，向下一层则令 k 等于 2k 或 2k+1。</p>
+<h4 id="如何保证有序性？"><a href="#如何保证有序性？" class="headerlink" title="如何保证有序性？"></a>如何保证有序性？</h4><p> 每当插入一个数据或删除一个数据，有序性就可能被打破，所以堆的有序化变得很重要。</p>
+<p><strong>有序化过程</strong></p>
+<p><img src="https://s2.ax1x.com/2020/02/06/16Agr6.png" alt=""></p>
+<p><strong>由下至上的堆有序化(上浮)</strong></p>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">private</span> <span class="token keyword">void</span> <span class="token function">swim</span><span class="token punctuation">(</span><span class="token keyword">int</span> k<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">while</span> <span class="token punctuation">(</span>k <span class="token operator">></span> <span class="token number">1</span> <span class="token operator">&amp;&amp;</span> <span class="token function">less</span><span class="token punctuation">(</span>k<span class="token operator">/</span><span class="token number">2</span><span class="token punctuation">,</span> k <span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token function">exch</span><span class="token punctuation">(</span>k <span class="token operator">/</span> <span class="token number">2</span><span class="token punctuation">,</span> k<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            k <span class="token operator">=</span> k <span class="token operator">/</span> <span class="token number">2</span><span class="token punctuation">;</span>
         <span class="token punctuation">}</span>
-        <span class="token keyword">return</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span></code></pre>
-<h5 id="递归"><a href="#递归" class="headerlink" title="递归"></a>递归</h5><pre class=" language-java"><code class="language-java"><span class="token keyword">static</span> <span class="token keyword">int</span> <span class="token function">binary</span><span class="token punctuation">(</span><span class="token keyword">int</span><span class="token punctuation">[</span><span class="token punctuation">]</span> arr<span class="token punctuation">,</span> <span class="token keyword">int</span> start<span class="token punctuation">,</span> <span class="token keyword">int</span> end<span class="token punctuation">,</span> <span class="token keyword">int</span> target<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token keyword">if</span> <span class="token punctuation">(</span>start <span class="token operator">></span> end<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-            <span class="token keyword">return</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span>
+<p><strong>由上至下的堆有序化(下沉)</strong></p>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">private</span> <span class="token keyword">void</span> <span class="token function">sink</span><span class="token punctuation">(</span><span class="token keyword">int</span> k<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">while</span> <span class="token punctuation">(</span><span class="token number">2</span> <span class="token operator">*</span> k <span class="token operator">&lt;=</span> N<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">int</span> j <span class="token operator">=</span> <span class="token number">2</span> <span class="token operator">*</span> k<span class="token punctuation">;</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>j <span class="token operator">&lt;</span> N <span class="token operator">&amp;&amp;</span> <span class="token function">less</span><span class="token punctuation">(</span>j<span class="token punctuation">,</span> j <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">)</span> j<span class="token operator">++</span><span class="token punctuation">;</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span><span class="token function">less</span><span class="token punctuation">(</span>k<span class="token punctuation">,</span> j<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token keyword">break</span><span class="token punctuation">;</span>
+            <span class="token function">exch</span><span class="token punctuation">(</span>k<span class="token punctuation">,</span> j<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            k <span class="token operator">=</span> j<span class="token punctuation">;</span>
         <span class="token punctuation">}</span>
-        <span class="token keyword">int</span> mid<span class="token operator">=</span>start<span class="token operator">+</span><span class="token punctuation">(</span>end<span class="token operator">-</span>start<span class="token punctuation">)</span><span class="token operator">/</span><span class="token number">2</span><span class="token punctuation">;</span>
-        <span class="token keyword">if</span><span class="token punctuation">(</span>arr<span class="token punctuation">[</span>mid<span class="token punctuation">]</span><span class="token operator">></span>target<span class="token punctuation">)</span><span class="token punctuation">{</span>
-            <span class="token keyword">return</span> <span class="token function">binary</span><span class="token punctuation">(</span>arr<span class="token punctuation">,</span>start<span class="token punctuation">,</span>mid<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">,</span>target<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
-        <span class="token keyword">if</span><span class="token punctuation">(</span>arr<span class="token punctuation">[</span>mid<span class="token punctuation">]</span><span class="token operator">&lt;</span>target<span class="token punctuation">)</span><span class="token punctuation">{</span>
-            <span class="token keyword">return</span> <span class="token function">binary</span><span class="token punctuation">(</span>arr<span class="token punctuation">,</span>mid<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">,</span>end<span class="token punctuation">,</span>target<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
-        <span class="token keyword">return</span> mid<span class="token punctuation">;</span>
     <span class="token punctuation">}</span></code></pre>
-<h4 id="中值的计算"><a href="#中值的计算" class="headerlink" title="中值的计算"></a>中值的计算</h4><pre class=" language-java"><code class="language-java">mid<span class="token operator">=</span><span class="token punctuation">(</span>start<span class="token operator">+</span>end<span class="token punctuation">)</span><span class="token operator">/</span><span class="token number">2</span></code></pre>
-<pre class=" language-java"><code class="language-java">mid<span class="token operator">=</span>start<span class="token operator">+</span><span class="token punctuation">(</span>end<span class="token operator">-</span>start<span class="token punctuation">)</span><span class="token operator">/</span><span class="token number">2</span></code></pre>
-<p>这两种计算结果是一样的，但在java中第一种处理方式更有可能出现溢出bug，start+end很大时。就会得到错误的中值。但是第二种处理使得mid一定小于end，大于start。不存在溢出风险。</p>
-<h4 id="二分查找法的缺陷"><a href="#二分查找法的缺陷" class="headerlink" title="二分查找法的缺陷"></a>二分查找法的缺陷</h4><p>二分查找法在时间复杂度上还算高效，但也存在明显的缺陷，就是数组必须有序，虽然使用java的工具类给数组排序十分方便，但在时空复杂度上就有一定的花费。并且查找也只能是数组。</p>
+<p>####优先队列实现代码展示</p>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">MaxPQ</span><span class="token operator">&lt;</span>Key <span class="token keyword">extends</span> <span class="token class-name">Comparable</span><span class="token operator">&lt;</span>Key<span class="token operator">>></span> <span class="token punctuation">{</span>
+    <span class="token keyword">private</span> Key<span class="token punctuation">[</span><span class="token punctuation">]</span> pq<span class="token punctuation">;</span>
+    <span class="token keyword">private</span> <span class="token keyword">int</span> N <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">public</span> <span class="token function">MaxPQ</span><span class="token punctuation">(</span><span class="token keyword">int</span> MaxN<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        pq <span class="token operator">=</span> <span class="token punctuation">(</span>Key<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token keyword">new</span> <span class="token class-name">Comparable</span><span class="token punctuation">[</span>MaxN <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+
+    <span class="token keyword">public</span> <span class="token keyword">boolean</span> <span class="token function">isEmpty</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> N <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">public</span> <span class="token keyword">int</span> <span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> N<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">private</span> <span class="token keyword">boolean</span> <span class="token function">less</span><span class="token punctuation">(</span><span class="token keyword">int</span> i<span class="token punctuation">,</span> <span class="token keyword">int</span> j<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> pq<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">compareTo</span><span class="token punctuation">(</span>pq<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token operator">&lt;</span> <span class="token number">0</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">private</span> <span class="token keyword">void</span> <span class="token function">exch</span><span class="token punctuation">(</span><span class="token keyword">int</span> i<span class="token punctuation">,</span> <span class="token keyword">int</span> j<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        Key temp <span class="token operator">=</span> pq<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">;</span>
+        pq<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">=</span> pq<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">;</span>
+        pq<span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token operator">=</span> temp<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token comment" spellcheck="true">/**
+     * 上浮
+     *
+     * @param k
+     */</span>
+    <span class="token keyword">private</span> <span class="token keyword">void</span> <span class="token function">swim</span><span class="token punctuation">(</span><span class="token keyword">int</span> k<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">while</span> <span class="token punctuation">(</span>k <span class="token operator">></span> <span class="token number">1</span> <span class="token operator">&amp;&amp;</span> <span class="token function">less</span><span class="token punctuation">(</span>k<span class="token operator">/</span><span class="token number">2</span><span class="token punctuation">,</span> k <span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token function">exch</span><span class="token punctuation">(</span>k <span class="token operator">/</span> <span class="token number">2</span><span class="token punctuation">,</span> k<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            k <span class="token operator">=</span> k <span class="token operator">/</span> <span class="token number">2</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token comment" spellcheck="true">/**
+     * 下沉
+     *
+     * @param k
+     */</span>
+    <span class="token keyword">private</span> <span class="token keyword">void</span> <span class="token function">sink</span><span class="token punctuation">(</span><span class="token keyword">int</span> k<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">while</span> <span class="token punctuation">(</span><span class="token number">2</span> <span class="token operator">*</span> k <span class="token operator">&lt;=</span> N<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">int</span> j <span class="token operator">=</span> <span class="token number">2</span> <span class="token operator">*</span> k<span class="token punctuation">;</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>j <span class="token operator">&lt;</span> N <span class="token operator">&amp;&amp;</span> <span class="token function">less</span><span class="token punctuation">(</span>j<span class="token punctuation">,</span> j <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">)</span> j<span class="token operator">++</span><span class="token punctuation">;</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span><span class="token function">less</span><span class="token punctuation">(</span>k<span class="token punctuation">,</span> j<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token keyword">break</span><span class="token punctuation">;</span>
+            <span class="token function">exch</span><span class="token punctuation">(</span>k<span class="token punctuation">,</span> j<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            k <span class="token operator">=</span> j<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">insert</span><span class="token punctuation">(</span>Key Key<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        pq<span class="token punctuation">[</span><span class="token operator">++</span>N<span class="token punctuation">]</span> <span class="token operator">=</span> Key<span class="token punctuation">;</span>
+        <span class="token function">swim</span><span class="token punctuation">(</span>N<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">public</span> Key <span class="token function">delMax</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        Key max <span class="token operator">=</span> pq<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+        <span class="token function">exch</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> N<span class="token operator">--</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        pq<span class="token punctuation">[</span>N <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">=</span> null<span class="token punctuation">;</span>
+        <span class="token function">sink</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span> max<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+<span class="token punctuation">}</span></code></pre>
 
             </div>
             <hr/>
@@ -535,7 +597,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://www.wyatt.asia/2020/02/02/er-fen-cha-zhao-suan-fa/">https://www.wyatt.asia/2020/02/02/er-fen-cha-zhao-suan-fa/</a>
+                    <a href="https://www.wyatt.asia/2020/02/06/ji-yu-er-cha-dui-de-you-xian-dui-lie-shi-xian/">https://www.wyatt.asia/2020/02/06/ji-yu-er-cha-dui-de-you-xian-dui-lie-shi-xian/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -577,8 +639,20 @@
                                     <span class="chip bg-color">Java</span>
                                 </a>
                             
+                                <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">
+                                    <span class="chip bg-color">数据结构</span>
+                                </a>
+                            
                                 <a href="/tags/%E7%AE%97%E6%B3%95/">
                                     <span class="chip bg-color">算法</span>
+                                </a>
+                            
+                                <a href="/tags/%E4%BC%98%E5%85%88%E9%98%9F%E5%88%97/">
+                                    <span class="chip bg-color">优先队列</span>
+                                </a>
+                            
+                                <a href="/tags/%E5%A0%86/">
+                                    <span class="chip bg-color">堆</span>
                                 </a>
                             
                         </div>
@@ -773,29 +847,96 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2020/02/03/xi-er-pai-xu/">
+                <a href="/2020/02/06/ji-yu-er-cha-dui-de-you-xian-dui-lie-shi-xian/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/21.jpg" class="responsive-img" alt="希尔排序">
+                        <img src="/medias/featureimages/40.jpg" class="responsive-img" alt="基于二叉堆的优先队列实现">
                         
-                        <span class="card-title">希尔排序</span>
+                        <span class="card-title">基于二叉堆的优先队列实现</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            插入排序的升级版希尔排序
+                            抽象数据类型->优先队列
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-02-03
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-02-06
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" class="post-category">
+                                    数据结构
+                                </a>
+                            
+                            
                         </span>
+                    </div>
+                </div>
+
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/Java/">
+                        <span class="chip bg-color">Java</span>
+                    </a>
+                    
+                    <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">
+                        <span class="chip bg-color">数据结构</span>
+                    </a>
+                    
+                    <a href="/tags/%E7%AE%97%E6%B3%95/">
+                        <span class="chip bg-color">算法</span>
+                    </a>
+                    
+                    <a href="/tags/%E4%BC%98%E5%85%88%E9%98%9F%E5%88%97/">
+                        <span class="chip bg-color">优先队列</span>
+                    </a>
+                    
+                    <a href="/tags/%E5%A0%86/">
+                        <span class="chip bg-color">堆</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2020/02/05/kuai-su-pai-xu/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/29.jpg" class="responsive-img" alt="快速排序">
+                        
+                        <span class="card-title">快速排序</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            快速排序排序可能是应用最广泛的排序算法
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-02-05
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -823,57 +964,8 @@
                         <span class="chip bg-color">排序</span>
                     </a>
                     
-                </div>
-                
-            </div>
-        </div>
-        
-        
-        <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge right-badge text-color">
-                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
-            </div>
-            <div class="card">
-                <a href="/2020/01/31/shi-yong-cadvisor-influxdb-grafana-jian-kong-xi-tong/">
-                    <div class="card-image">
-                        
-                        
-                        <img src="/medias/featureimages/30.jpg" class="responsive-img" alt="使用cAdvisor+Influxdb+Grafana监控系统">
-                        
-                        <span class="card-title">使用cAdvisor+Influxdb+Grafana监控系统</span>
-                    </div>
-                </a>
-                <div class="card-content article-content">
-                    <div class="summary block-with-text">
-                        
-                            使用cAdvisor+Influxdb+Grafana监控系统，Influxdb+Grafana都是轻量级的应用但是功能异常强大。
-                        
-                    </div>
-                    <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-01-31
-                            </span>
-                        <span class="publish-author">
-                            
-                            <i class="fas fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/categories/Linux/" class="post-category">
-                                    Linux
-                                </a>
-                            
-                            
-                        </span>
-                    </div>
-                </div>
-                
-                <div class="card-action article-tags">
-                    
-                    <a href="/tags/%E6%95%B0%E6%8D%AE%E7%9B%91%E6%8E%A7/">
-                        <span class="chip bg-color">数据监控</span>
-                    </a>
-                    
-                    <a href="/tags/Docker/">
-                        <span class="chip bg-color">Docker</span>
+                    <a href="/tags/%E5%88%86%E6%B2%BB/">
+                        <span class="chip bg-color">分治</span>
                     </a>
                     
                 </div>
