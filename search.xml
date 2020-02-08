@@ -1,6 +1,223 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>二叉查找树</title>
+    <url>/2020/02/08/er-cha-cha-zhao-shu/</url>
+    <content><![CDATA[<h4 id="二叉查找树"><a href="#二叉查找树" class="headerlink" title="二叉查找树"></a>二叉查找树</h4><h5 id="定义："><a href="#定义：" class="headerlink" title="定义："></a>定义：</h5><p>一颗空树，或者具有以下性质的二叉树</p>
+<ul>
+<li>若左子树不为空，则左子树上所有的节点的值小于根节点的值</li>
+<li>若右子树不为空，则右子树上所有的节点的值大于根节点的值</li>
+<li>没有键值相等的节点</li>
+<li>左右子树也均为二叉查找树</li>
+</ul>
+<h5 id="性能分析："><a href="#性能分析：" class="headerlink" title="性能分析："></a>性能分析：</h5><p>二叉查找树在现在的计算机领域中有许多的应用场景，在随机的情况下，二叉查找树能进行快速的插入和查找。但在某些极端情况下，性能还是不足以令人满意。在所有的操作的最坏情况下所需的时间都跟二叉树的高度成正比。</p>
+<h4 id="部分代码展示"><a href="#部分代码展示" class="headerlink" title="部分代码展示"></a>部分代码展示</h4><pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">BST</span><span class="token operator">&lt;</span>Key <span class="token keyword">extends</span> <span class="token class-name">Comparable</span><span class="token operator">&lt;</span>Key<span class="token operator">></span><span class="token punctuation">,</span> Value<span class="token operator">></span> <span class="token punctuation">{</span>
+    <span class="token keyword">private</span> Node root<span class="token punctuation">;</span> <span class="token comment" spellcheck="true">//根节点</span>
+    <span class="token keyword">private</span> <span class="token keyword">class</span> <span class="token class-name">Node</span> <span class="token punctuation">{</span> 
+        <span class="token keyword">private</span> Key key<span class="token punctuation">;</span>  <span class="token comment" spellcheck="true">//键</span>
+        <span class="token keyword">private</span> Value val<span class="token punctuation">;</span>  <span class="token comment" spellcheck="true">//键所对应的值</span>
+        <span class="token keyword">private</span> Node left<span class="token punctuation">;</span>  <span class="token comment" spellcheck="true">//左子节点</span>
+        <span class="token keyword">private</span> Node right<span class="token punctuation">;</span> <span class="token comment" spellcheck="true">//右子节点</span>
+        <span class="token keyword">private</span> <span class="token keyword">int</span> N<span class="token punctuation">;</span>      <span class="token comment" spellcheck="true">//节点总数</span>
+
+        <span class="token keyword">public</span> <span class="token function">Node</span><span class="token punctuation">(</span>Key key<span class="token punctuation">,</span> Value val<span class="token punctuation">,</span> <span class="token keyword">int</span> N<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">this</span><span class="token punctuation">.</span>key <span class="token operator">=</span> key<span class="token punctuation">;</span>
+            <span class="token keyword">this</span><span class="token punctuation">.</span>val <span class="token operator">=</span> val<span class="token punctuation">;</span>
+            <span class="token keyword">this</span><span class="token punctuation">.</span>N <span class="token operator">=</span> N<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">public</span> <span class="token keyword">int</span> <span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token function">size</span><span class="token punctuation">(</span>root<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">private</span> <span class="token keyword">int</span> <span class="token function">size</span><span class="token punctuation">(</span>Node x<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>x <span class="token operator">==</span> null<span class="token punctuation">)</span> <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+        <span class="token keyword">else</span> <span class="token keyword">return</span> x<span class="token punctuation">.</span>N<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">public</span> Value <span class="token function">get</span><span class="token punctuation">(</span>Key key<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token function">get</span><span class="token punctuation">(</span>root<span class="token punctuation">,</span> key<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">private</span> Value <span class="token function">get</span><span class="token punctuation">(</span>Node x<span class="token punctuation">,</span> Key key<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>x <span class="token operator">==</span> null<span class="token punctuation">)</span> <span class="token keyword">return</span> null<span class="token punctuation">;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>x<span class="token punctuation">.</span>key <span class="token operator">==</span> key<span class="token punctuation">)</span> <span class="token keyword">return</span> x<span class="token punctuation">.</span>val<span class="token punctuation">;</span>
+        <span class="token keyword">int</span> cmp <span class="token operator">=</span> key<span class="token punctuation">.</span><span class="token function">compareTo</span><span class="token punctuation">(</span>x<span class="token punctuation">.</span>key<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>cmp <span class="token operator">></span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token keyword">return</span> <span class="token function">get</span><span class="token punctuation">(</span>x<span class="token punctuation">.</span>right<span class="token punctuation">,</span> key<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>cmp <span class="token operator">&lt;</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token keyword">return</span> <span class="token function">get</span><span class="token punctuation">(</span>x<span class="token punctuation">.</span>left<span class="token punctuation">,</span> key<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">else</span> <span class="token keyword">return</span> x<span class="token punctuation">.</span>val<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">put</span><span class="token punctuation">(</span>Key key<span class="token punctuation">,</span> Value val<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        root <span class="token operator">=</span> <span class="token function">put</span><span class="token punctuation">(</span>root<span class="token punctuation">,</span> key<span class="token punctuation">,</span> val<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">private</span> Node <span class="token function">put</span><span class="token punctuation">(</span>Node x<span class="token punctuation">,</span> Key key<span class="token punctuation">,</span> Value val<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>x <span class="token operator">==</span> null<span class="token punctuation">)</span> <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">Node</span><span class="token punctuation">(</span>key<span class="token punctuation">,</span> val<span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">int</span> cmp <span class="token operator">=</span> key<span class="token punctuation">.</span><span class="token function">compareTo</span><span class="token punctuation">(</span>x<span class="token punctuation">.</span>key<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>cmp <span class="token operator">&lt;</span> <span class="token number">0</span><span class="token punctuation">)</span> x<span class="token punctuation">.</span>left <span class="token operator">=</span> <span class="token function">put</span><span class="token punctuation">(</span>x<span class="token punctuation">.</span>left<span class="token punctuation">,</span> key<span class="token punctuation">,</span> val<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>cmp <span class="token operator">></span> <span class="token number">0</span><span class="token punctuation">)</span> x<span class="token punctuation">.</span>right <span class="token operator">=</span> <span class="token function">put</span><span class="token punctuation">(</span>x<span class="token punctuation">.</span>right<span class="token punctuation">,</span> key<span class="token punctuation">,</span> val<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">else</span> x<span class="token punctuation">.</span>val <span class="token operator">=</span> val<span class="token punctuation">;</span>
+        x<span class="token punctuation">.</span>N <span class="token operator">=</span> <span class="token function">size</span><span class="token punctuation">(</span>x<span class="token punctuation">.</span>left<span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token function">size</span><span class="token punctuation">(</span>x<span class="token punctuation">.</span>right<span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span> x<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">public</span> Key <span class="token function">min</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>root <span class="token operator">==</span> null<span class="token punctuation">)</span> <span class="token keyword">return</span> null<span class="token punctuation">;</span>
+        <span class="token keyword">return</span> <span class="token function">min</span><span class="token punctuation">(</span>root<span class="token punctuation">)</span><span class="token punctuation">.</span>key<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">private</span> Node <span class="token function">min</span><span class="token punctuation">(</span>Node x<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>x<span class="token punctuation">.</span>left <span class="token operator">==</span> null<span class="token punctuation">)</span> <span class="token keyword">return</span> x<span class="token punctuation">;</span>
+        <span class="token keyword">return</span> <span class="token function">min</span><span class="token punctuation">(</span>x<span class="token punctuation">.</span>left<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">public</span> Key <span class="token function">max</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>root <span class="token operator">==</span> null<span class="token punctuation">)</span> <span class="token keyword">return</span> null<span class="token punctuation">;</span>
+        <span class="token keyword">return</span> <span class="token function">max</span><span class="token punctuation">(</span>root<span class="token punctuation">)</span><span class="token punctuation">.</span>key<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">private</span> Node <span class="token function">max</span><span class="token punctuation">(</span>Node x<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>x<span class="token punctuation">.</span>right <span class="token operator">==</span> null<span class="token punctuation">)</span> <span class="token keyword">return</span> x<span class="token punctuation">;</span>
+        <span class="token keyword">return</span> <span class="token function">max</span><span class="token punctuation">(</span>x<span class="token punctuation">.</span>right<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">public</span> Key <span class="token function">floor</span><span class="token punctuation">(</span>Key key<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        Node x <span class="token operator">=</span> <span class="token function">floor</span><span class="token punctuation">(</span>root<span class="token punctuation">,</span> key<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>x <span class="token operator">==</span> null<span class="token punctuation">)</span> <span class="token keyword">return</span> null<span class="token punctuation">;</span>
+        <span class="token keyword">return</span> x<span class="token punctuation">.</span>key<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">private</span> Node <span class="token function">floor</span><span class="token punctuation">(</span>Node x<span class="token punctuation">,</span> Key key<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>x <span class="token operator">==</span> null<span class="token punctuation">)</span> <span class="token keyword">return</span> null<span class="token punctuation">;</span>
+        <span class="token keyword">int</span> cmp <span class="token operator">=</span> key<span class="token punctuation">.</span><span class="token function">compareTo</span><span class="token punctuation">(</span>x<span class="token punctuation">.</span>key<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>cmp <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token keyword">return</span> x<span class="token punctuation">;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>cmp <span class="token operator">&lt;</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token keyword">return</span> x<span class="token punctuation">.</span>left<span class="token punctuation">;</span>
+        Node t <span class="token operator">=</span> <span class="token function">floor</span><span class="token punctuation">(</span>x<span class="token punctuation">.</span>right<span class="token punctuation">,</span> key<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>t <span class="token operator">!=</span> null<span class="token punctuation">)</span> <span class="token keyword">return</span> t<span class="token punctuation">;</span>
+        <span class="token keyword">return</span> x<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+
+    <span class="token keyword">public</span> Key <span class="token function">celling</span><span class="token punctuation">(</span>Key key<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        Node x <span class="token operator">=</span> <span class="token function">celling</span><span class="token punctuation">(</span>root<span class="token punctuation">,</span> key<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>x <span class="token operator">==</span> null<span class="token punctuation">)</span> <span class="token keyword">return</span> null<span class="token punctuation">;</span>
+        <span class="token keyword">return</span> x<span class="token punctuation">.</span>key<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">private</span> Node <span class="token function">celling</span><span class="token punctuation">(</span>Node x<span class="token punctuation">,</span> Key key<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>x <span class="token operator">==</span> null<span class="token punctuation">)</span> <span class="token keyword">return</span> null<span class="token punctuation">;</span>
+        <span class="token keyword">int</span> cmp <span class="token operator">=</span> key<span class="token punctuation">.</span><span class="token function">compareTo</span><span class="token punctuation">(</span>x<span class="token punctuation">.</span>key<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>cmp <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token keyword">return</span> x<span class="token punctuation">;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>cmp <span class="token operator">></span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token keyword">return</span> x<span class="token punctuation">.</span>right<span class="token punctuation">;</span>
+        Node t <span class="token operator">=</span> <span class="token function">celling</span><span class="token punctuation">(</span>x<span class="token punctuation">.</span>left<span class="token punctuation">,</span> key<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>t <span class="token operator">!=</span> null<span class="token punctuation">)</span> <span class="token keyword">return</span> t<span class="token punctuation">;</span>
+        <span class="token keyword">return</span> x<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">public</span> Key <span class="token function">select</span><span class="token punctuation">(</span><span class="token keyword">int</span> k<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token function">select</span><span class="token punctuation">(</span>root<span class="token punctuation">,</span> k<span class="token punctuation">)</span><span class="token punctuation">.</span>key<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">private</span> Node <span class="token function">select</span><span class="token punctuation">(</span>Node x<span class="token punctuation">,</span> <span class="token keyword">int</span> k<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>x <span class="token operator">==</span> null<span class="token punctuation">)</span> <span class="token keyword">return</span> null<span class="token punctuation">;</span>
+        <span class="token keyword">int</span> t <span class="token operator">=</span> <span class="token function">size</span><span class="token punctuation">(</span>x<span class="token punctuation">.</span>left<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>k <span class="token operator">&lt;</span> t<span class="token punctuation">)</span> <span class="token keyword">return</span> <span class="token function">select</span><span class="token punctuation">(</span>x<span class="token punctuation">.</span>left<span class="token punctuation">,</span> k<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>k <span class="token operator">></span> t<span class="token punctuation">)</span> <span class="token keyword">return</span> <span class="token function">select</span><span class="token punctuation">(</span>x<span class="token punctuation">.</span>right<span class="token punctuation">,</span> k <span class="token operator">-</span> t <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">else</span> <span class="token keyword">return</span> x<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+
+    <span class="token keyword">public</span> <span class="token keyword">int</span> <span class="token function">rank</span><span class="token punctuation">(</span>Key key<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token function">rank</span><span class="token punctuation">(</span>root<span class="token punctuation">,</span> key<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">private</span> <span class="token keyword">int</span> <span class="token function">rank</span><span class="token punctuation">(</span>Node x<span class="token punctuation">,</span> Key key<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>x <span class="token operator">==</span> null<span class="token punctuation">)</span> <span class="token keyword">return</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token function">get</span><span class="token punctuation">(</span>key<span class="token punctuation">)</span> <span class="token operator">==</span> null<span class="token punctuation">)</span> <span class="token keyword">return</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span>
+        <span class="token keyword">int</span> t <span class="token operator">=</span> <span class="token function">size</span><span class="token punctuation">(</span>x<span class="token punctuation">.</span>left<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">int</span> cmp <span class="token operator">=</span> key<span class="token punctuation">.</span><span class="token function">compareTo</span><span class="token punctuation">(</span>x<span class="token punctuation">.</span>key<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>cmp <span class="token operator">&lt;</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token keyword">return</span> <span class="token function">rank</span><span class="token punctuation">(</span>x<span class="token punctuation">.</span>left<span class="token punctuation">,</span> key<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>cmp <span class="token operator">></span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token keyword">return</span> <span class="token number">1</span> <span class="token operator">+</span> t <span class="token operator">+</span> <span class="token function">rank</span><span class="token punctuation">(</span>x<span class="token punctuation">.</span>right<span class="token punctuation">,</span> key<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">else</span> <span class="token keyword">return</span> t<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">deleteMin</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        root <span class="token operator">=</span> <span class="token function">deleteMin</span><span class="token punctuation">(</span>root<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">private</span> Node <span class="token function">deleteMin</span><span class="token punctuation">(</span>Node x<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>x<span class="token punctuation">.</span>left <span class="token operator">==</span> null<span class="token punctuation">)</span> <span class="token keyword">return</span> x<span class="token punctuation">.</span>right<span class="token punctuation">;</span>
+        x<span class="token punctuation">.</span>left <span class="token operator">=</span> <span class="token function">deleteMin</span><span class="token punctuation">(</span>x<span class="token punctuation">.</span>left<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        x<span class="token punctuation">.</span>N <span class="token operator">=</span> <span class="token function">size</span><span class="token punctuation">(</span>x<span class="token punctuation">.</span>left<span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token function">size</span><span class="token punctuation">(</span>x<span class="token punctuation">.</span>right<span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span> x<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">deleteMax</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        root <span class="token operator">=</span> <span class="token function">deleteMin</span><span class="token punctuation">(</span>root<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">private</span> Node <span class="token function">deleteMax</span><span class="token punctuation">(</span>Node x<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>x<span class="token punctuation">.</span>right <span class="token operator">==</span> null<span class="token punctuation">)</span> <span class="token keyword">return</span> x<span class="token punctuation">.</span>left<span class="token punctuation">;</span>
+        x<span class="token punctuation">.</span>right <span class="token operator">=</span> <span class="token function">deleteMax</span><span class="token punctuation">(</span>x<span class="token punctuation">.</span>right<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        x<span class="token punctuation">.</span>N <span class="token operator">=</span> <span class="token function">size</span><span class="token punctuation">(</span>x<span class="token punctuation">.</span>left<span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token function">size</span><span class="token punctuation">(</span>x<span class="token punctuation">.</span>right<span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span> x<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">delete</span><span class="token punctuation">(</span>Key key<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        root <span class="token operator">=</span> <span class="token function">delete</span><span class="token punctuation">(</span>root<span class="token punctuation">,</span> key<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">private</span> Node <span class="token function">delete</span><span class="token punctuation">(</span>Node x<span class="token punctuation">,</span> Key key<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>x <span class="token operator">==</span> null<span class="token punctuation">)</span> <span class="token keyword">return</span> null<span class="token punctuation">;</span>
+        <span class="token keyword">int</span> cmp <span class="token operator">=</span> key<span class="token punctuation">.</span><span class="token function">compareTo</span><span class="token punctuation">(</span>x<span class="token punctuation">.</span>key<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>cmp <span class="token operator">&lt;</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token keyword">return</span> x<span class="token punctuation">.</span>left <span class="token operator">=</span> <span class="token function">delete</span><span class="token punctuation">(</span>x<span class="token punctuation">.</span>left<span class="token punctuation">,</span> key<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>cmp <span class="token operator">></span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token keyword">return</span> x<span class="token punctuation">.</span>right <span class="token operator">=</span> <span class="token function">delete</span><span class="token punctuation">(</span>x<span class="token punctuation">.</span>right<span class="token punctuation">,</span> key<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">else</span> <span class="token punctuation">{</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>x<span class="token punctuation">.</span>left <span class="token operator">==</span> null<span class="token punctuation">)</span> <span class="token keyword">return</span> x<span class="token punctuation">.</span>right<span class="token punctuation">;</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>x<span class="token punctuation">.</span>right <span class="token operator">==</span> null<span class="token punctuation">)</span> <span class="token keyword">return</span> x<span class="token punctuation">.</span>left<span class="token punctuation">;</span>
+            Node t <span class="token operator">=</span> x<span class="token punctuation">;</span>
+            x <span class="token operator">=</span> <span class="token function">min</span><span class="token punctuation">(</span>t<span class="token punctuation">.</span>right<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            x<span class="token punctuation">.</span>left <span class="token operator">=</span> t<span class="token punctuation">.</span>left<span class="token punctuation">;</span>
+            x<span class="token punctuation">.</span>right <span class="token operator">=</span> <span class="token function">deleteMin</span><span class="token punctuation">(</span>t<span class="token punctuation">.</span>right<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        x<span class="token punctuation">.</span>N <span class="token operator">=</span> <span class="token function">size</span><span class="token punctuation">(</span>x<span class="token punctuation">.</span>right<span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token function">size</span><span class="token punctuation">(</span>x<span class="token punctuation">.</span>left<span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span> x<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">public</span> Iterable<span class="token operator">&lt;</span>Key<span class="token operator">></span> <span class="token function">keys</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token function">keys</span><span class="token punctuation">(</span><span class="token function">min</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token function">max</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">private</span> Iterable<span class="token operator">&lt;</span>Key<span class="token operator">></span> <span class="token function">keys</span><span class="token punctuation">(</span>Key lo<span class="token punctuation">,</span> Key hi<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        Queue<span class="token operator">&lt;</span>Key<span class="token operator">></span> queue <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Queue</span><span class="token operator">&lt;</span>Key<span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token function">keys</span><span class="token punctuation">(</span>root<span class="token punctuation">,</span> queue<span class="token punctuation">,</span> lo<span class="token punctuation">,</span> hi<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span>  queue<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">private</span> <span class="token keyword">void</span> <span class="token function">keys</span><span class="token punctuation">(</span>Node x<span class="token punctuation">,</span> Queue<span class="token operator">&lt;</span>Key<span class="token operator">></span> queue<span class="token punctuation">,</span> Key lo<span class="token punctuation">,</span> Key hi<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>x <span class="token operator">==</span> null<span class="token punctuation">)</span> <span class="token keyword">return</span><span class="token punctuation">;</span>
+        <span class="token keyword">int</span> cmplo <span class="token operator">=</span> lo<span class="token punctuation">.</span><span class="token function">compareTo</span><span class="token punctuation">(</span>x<span class="token punctuation">.</span>key<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">int</span> cmphi <span class="token operator">=</span> hi<span class="token punctuation">.</span><span class="token function">compareTo</span><span class="token punctuation">(</span>x<span class="token punctuation">.</span>key<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>cmplo <span class="token operator">&lt;</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token function">keys</span><span class="token punctuation">(</span>x<span class="token punctuation">.</span>right<span class="token punctuation">,</span> queue<span class="token punctuation">,</span> lo<span class="token punctuation">,</span> hi<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>cmplo <span class="token operator">&lt;=</span> <span class="token number">0</span> <span class="token operator">&amp;&amp;</span> cmphi <span class="token operator">>=</span> <span class="token number">0</span><span class="token punctuation">)</span> queue<span class="token punctuation">.</span><span class="token function">enqueue</span><span class="token punctuation">(</span>x<span class="token punctuation">.</span>key<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>cmphi <span class="token operator">></span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token function">keys</span><span class="token punctuation">(</span>x<span class="token punctuation">.</span>left<span class="token punctuation">,</span> queue<span class="token punctuation">,</span> lo<span class="token punctuation">,</span> hi<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+
+<span class="token punctuation">}</span></code></pre>
+]]></content>
+      <categories>
+        <category>数据结构</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+        <tag>数据结构</tag>
+        <tag>算法</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>堆排序</title>
     <url>/2020/02/06/dui-pai-xu/</url>
     <content><![CDATA[<h4 id="堆排序"><a href="#堆排序" class="headerlink" title="堆排序"></a>堆排序</h4><p>堆排序与优先队列的基于二叉堆实现有着一样的原理基础，堆排序的过程包括对的构造和下沉两个阶段。首先将数组元素建成大小为n的大顶堆，堆顶（数组第一个元素）是所有元素中的最大值，将堆顶元素和数组最后一个元素进行交换，再将除了最后一个数的n-1个元素建立成大顶堆，再将最大元素和数组倒数第二个元素进行交换，重复直至堆大小减为1。 </p>
@@ -142,8 +359,8 @@
       </categories>
       <tags>
         <tag>Java</tag>
-        <tag>算法</tag>
         <tag>数据结构</tag>
+        <tag>算法</tag>
         <tag>优先队列</tag>
         <tag>堆</tag>
       </tags>
@@ -957,8 +1174,8 @@ cd dubbo/dubbo-demo/dubbo-demo-xml
         <category>Dubbo</category>
       </categories>
       <tags>
-        <tag>Java</tag>
         <tag>Dubbo</tag>
+        <tag>Java</tag>
         <tag>RPC</tag>
         <tag>SOA</tag>
         <tag>分布式</tag>
