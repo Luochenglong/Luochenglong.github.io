@@ -36,8 +36,8 @@
     <span class="token punctuation">}</span></code></pre>
 ]]></content>
       <tags>
-        <tag>算法</tag>
         <tag>Java</tag>
+        <tag>算法</tag>
         <tag>排序</tag>
         <tag>优雅的排序</tag>
       </tags>
@@ -141,8 +141,8 @@
         <category>数据结构</category>
       </categories>
       <tags>
-        <tag>算法</tag>
         <tag>Java</tag>
+        <tag>算法</tag>
         <tag>数据结构</tag>
         <tag>优先队列</tag>
         <tag>堆</tag>
@@ -217,8 +217,8 @@
         <category>算法</category>
       </categories>
       <tags>
-        <tag>算法</tag>
         <tag>Java</tag>
+        <tag>算法</tag>
         <tag>排序</tag>
         <tag>分治</tag>
       </tags>
@@ -320,8 +320,8 @@
         <category>算法</category>
       </categories>
       <tags>
-        <tag>算法</tag>
         <tag>Java</tag>
+        <tag>算法</tag>
         <tag>排序</tag>
         <tag>递归</tag>
       </tags>
@@ -357,8 +357,8 @@
         <category>算法</category>
       </categories>
       <tags>
-        <tag>算法</tag>
         <tag>Java</tag>
+        <tag>算法</tag>
         <tag>排序</tag>
       </tags>
   </entry>
@@ -411,8 +411,8 @@
         <category>算法</category>
       </categories>
       <tags>
-        <tag>算法</tag>
         <tag>Java</tag>
+        <tag>算法</tag>
       </tags>
   </entry>
   <entry>
@@ -685,9 +685,9 @@ INFLUXDB_PASS=cadvisor <span class="token punctuation">-</span><span class="toke
         <category>算法</category>
       </categories>
       <tags>
-        <tag>算法</tag>
         <tag>Java</tag>
         <tag>分布式</tag>
+        <tag>算法</tag>
       </tags>
   </entry>
   <entry>
