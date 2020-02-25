@@ -1,6 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Java中的Native关键字</title>
+    <url>/2020/02/25/java-zhong-de-native-guan-jian-zi/</url>
+    <content><![CDATA[<h4 id="初识Native"><a href="#初识Native" class="headerlink" title="初识Native"></a>初识Native</h4><p>第一次遇见Native 是在StrictMath包下</p>
+<pre class=" language-java"><code class="language-java"> <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">native</span> <span class="token keyword">double</span> <span class="token function">pow</span><span class="token punctuation">(</span><span class="token keyword">double</span> a<span class="token punctuation">,</span> <span class="token keyword">double</span> b<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<p>在某一次调用Math下的pow方法时，突然想看一下它的底层实现，于是就找到了StrictMath下，发现他不是一个接口，是一个final类，但这个方法却没有任何实现。顿时懵逼，仔细看了看才发现有个Native关键字。下面就介绍一下Native的作用。</p>
+<h4 id="Java-Native-Interface"><a href="#Java-Native-Interface" class="headerlink" title="Java Native Interface"></a>Java Native Interface</h4><p>JNI是用户和本地c代码互操的java API，native 是用做java 和其他语言（如c++）进行协作时用的 也就是native 后的函数的实现不是用java写的 ，所以源码并不需要关心。其实除了JNI ，JNA、JNative 也同样能使java调用c/c++。</p>
+<p>*<em>JAVA本地方法适用的情况 *</em></p>
+<ul>
+<li>为了使用底层的主机平台的某个特性，而这个特性不能通过JAVA API访问</li>
+<li>为了访问一个老的系统或者使用一个已有的库，而这个系统或这个库不是用JAVA编写的</li>
+<li>为了加快程序的性能，而将一段时间敏感的代码作为本地方法实现。</li>
+</ul>
+<h4 id="JNI的调用C的过程"><a href="#JNI的调用C的过程" class="headerlink" title="JNI的调用C的过程"></a>JNI的调用C的过程</h4><p><img src="https://images2015.cnblogs.com/blog/690102/201607/690102-20160725102547356-2054241629.png" alt=""></p>
+<h4 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h4><p>碰上源码方法上带有native关键字时，可以直接跳过，因为java也只是调用了其他语言的代码实现。</p>
+]]></content>
+      <categories>
+        <category>Java</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+        <tag>关键字</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>红黑树</title>
     <url>/2020/02/14/hong-hei-shu/</url>
     <content><![CDATA[<h4 id="红黑树"><a href="#红黑树" class="headerlink" title="红黑树"></a>红黑树</h4><p>​    红黑树是一种自平衡的二叉查找树。它的实现有些复杂，但它就算在最坏的情况下运行时间也是可以接受的。对于插入，查找，删除都能在O(logn)时间内完成。它有五条性质，以保证它的平衡。</p>
@@ -265,8 +289,8 @@
         <category>数据结构</category>
       </categories>
       <tags>
-        <tag>算法</tag>
         <tag>Java</tag>
+        <tag>算法</tag>
         <tag>数据结构</tag>
       </tags>
   </entry>
@@ -482,8 +506,8 @@
         <category>数据结构</category>
       </categories>
       <tags>
-        <tag>算法</tag>
         <tag>Java</tag>
+        <tag>算法</tag>
         <tag>数据结构</tag>
       </tags>
   </entry>
@@ -523,8 +547,8 @@
     <span class="token punctuation">}</span></code></pre>
 ]]></content>
       <tags>
-        <tag>算法</tag>
         <tag>Java</tag>
+        <tag>算法</tag>
         <tag>排序</tag>
         <tag>优雅的排序</tag>
       </tags>
@@ -628,8 +652,8 @@
         <category>数据结构</category>
       </categories>
       <tags>
-        <tag>算法</tag>
         <tag>Java</tag>
+        <tag>算法</tag>
         <tag>数据结构</tag>
         <tag>优先队列</tag>
         <tag>堆</tag>
@@ -704,8 +728,8 @@
         <category>算法</category>
       </categories>
       <tags>
-        <tag>算法</tag>
         <tag>Java</tag>
+        <tag>算法</tag>
         <tag>排序</tag>
         <tag>分治</tag>
       </tags>
@@ -807,8 +831,8 @@
         <category>算法</category>
       </categories>
       <tags>
-        <tag>算法</tag>
         <tag>Java</tag>
+        <tag>算法</tag>
         <tag>排序</tag>
         <tag>递归</tag>
       </tags>
@@ -844,8 +868,8 @@
         <category>算法</category>
       </categories>
       <tags>
-        <tag>算法</tag>
         <tag>Java</tag>
+        <tag>算法</tag>
         <tag>排序</tag>
       </tags>
   </entry>
@@ -898,8 +922,8 @@
         <category>算法</category>
       </categories>
       <tags>
-        <tag>算法</tag>
         <tag>Java</tag>
+        <tag>算法</tag>
       </tags>
   </entry>
   <entry>
@@ -1172,8 +1196,8 @@ INFLUXDB_PASS=cadvisor <span class="token punctuation">-</span><span class="toke
         <category>算法</category>
       </categories>
       <tags>
-        <tag>算法</tag>
         <tag>Java</tag>
+        <tag>算法</tag>
         <tag>分布式</tag>
       </tags>
   </entry>
